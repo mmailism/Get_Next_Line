@@ -17,13 +17,14 @@
 int	main()
 {
 	int	fd;
+	char buf[256];
+	int chars_read;
 
-	fd = open("file.txt", O_RDWR | O_CREAT | O_APPEND);
+	fd = open("file.txt", O_RDONLY);
 
-	dup2(fd, 1);
-
-	write(1, "hello", 5);
-	write(1, "\n", 1);
-
-	return 0;
+	while ((chars_read = read(fd, buf, 1)))
+	{
+		buf[chars_read] = '\0';
+		printf("buf-> %s\n", buf);
+	}
 }
