@@ -1,6 +1,32 @@
 #include "get_next_line.h"
 
-void	ft_merge(t_list **list, char *bur)
+void	ft_swipe_list(t_list **list)
+{
+	t_list	*last_node;
+	t_list	*clean_node;
+	int		i;
+	int		k;
+	char	*buf;
+
+	buf = malloc(BUFFER_SIZE + 1);
+	clean_node = malloc(sizeof(t_list));
+	if (buf == NULL || clean_node == NULL)
+		return ;
+	last_node = find_last_node(*list);
+
+	i = 0;
+	k = 0;
+	while (last_node->str_buf[i] != '\0' && last_node->str_buf[i] != '\n')
+		i++;
+	while (last_node->str_buf[i] != '\0' && last_node->str_buf[i++])
+		buf[k++] = last_node->str_buf[i];
+	buf[k] = '\0';
+	clean_node->str_buf = buf;
+	clean_node->next = NULL;
+	dealloc(list, clean_node, buf);
+}
+
+void	ft_merge(t_list **list, char *buf)
 {
 	t_list	*new_node;
 	t_list	*last_node;
@@ -20,9 +46,8 @@ void	ft_merge(t_list **list, char *bur)
 	new_node->next = NULL;
 }
 
-void	ft_swipe_list(t_list **list, int fd)
+void	ft_create_list(t_list **list, int fd)
 {
-
 	int		char_read;
 	char	*buf;
 
@@ -32,19 +57,17 @@ void	ft_swipe_list(t_list **list, int fd)
 		buf = malloc(BUFFER_SIZE + 1);
 		if (buf == NULL)
 			return ;
-									//10
+
 		char_read = read(fd, buf, BUFFER_SIZE);
-		//		EOF
+
 		if (!char_read)
 		{
 			free(buf);
 			return ;
 		}
 		buf[char_read] = '\0';
-		// Append the node
 		ft_merge(list, buf);
 	}
-
 }
 
 char	*ft_get_line(t_list *list)
