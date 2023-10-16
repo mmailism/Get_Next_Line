@@ -35,7 +35,7 @@ int	ft_len_newline(t_list *list)
 	int	len;
 
 	if (list == NULL)
-		return (NULL);
+		return (0);
 	len = 0;
 	//list != NULL
 	while (list)
@@ -62,7 +62,7 @@ void	ft_copy_str(t_list *list, char *str)
 	int	k;
 
 	if (list == NULL)
-		return (NULL);
+		return ;
 	k = 0;
 	while (list)
 	{
@@ -91,7 +91,6 @@ void	dealloc(t_list **list, t_list *clean_node, char *buf)
 	while (*list)
 	{
 		tmp = (*list)->next;
-		free(*list)->str_buf;
 		free(*list);
 		*list = tmp;
 	}
