@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef	struct s_list
 {
@@ -16,5 +17,8 @@ typedef	struct s_list
 }					t_list;
 
 	char	*get_next_line(int fd);
+	int		ft_len_newline(t_list *list);
+	void	ft_copy_str(t_list *list, char *str);
+	void	dealloc(t_list **list, t_list *clean_node, char *buf);
 
 #endif

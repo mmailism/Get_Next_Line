@@ -12,7 +12,7 @@ void	ft_swipe_list(t_list **list)
 	clean_node = malloc(sizeof(t_list));
 	if (buf == NULL || clean_node == NULL)
 		return ;
-	last_node = find_last_node(*list);
+	last_node = ft_find_last_node(*list);
 
 	i = 0;
 	k = 0;
@@ -31,7 +31,7 @@ void	ft_merge(t_list **list, char *buf)
 	t_list	*new_node;
 	t_list	*last_node;
 
-	last_node = find_last_node(*list);
+	last_node = ft_find_last_node(*list);
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return ;
@@ -52,7 +52,7 @@ void	ft_create_list(t_list **list, int fd)
 	char	*buf;
 
 	//scan line if '\n' present
-	while (!found_newline(*list))
+	while (!ft_found_newline(*list))
 	{
 		buf = malloc(BUFFER_SIZE + 1);
 		if (buf == NULL)
@@ -105,4 +105,17 @@ char	*get_next_line(int fd)
 	//
 	ft_swipe_list(&list);
 	return (next_line);
+}
+
+int	main()
+{
+	int		fd;
+	char	*line;
+	int		line_s;
+
+	line_s = 1;
+	fd = open("file.txt", O_RDONLY);
+
+	while (line = get_next_line(fd))
+		printf("%d->%s\n", line_s++, line);
 }
