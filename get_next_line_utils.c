@@ -13,7 +13,7 @@ int	ft_found_newline(t_list *list)
 		{
 			if (list->str_buf[i] == '\n')
 				return (i);
-			++i;
+			i++;
 		}
 		list = list->next;
 	}

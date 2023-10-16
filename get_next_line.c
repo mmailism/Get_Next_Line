@@ -107,15 +107,15 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-int	main()
-{
-	int		fd;
-	char	*line;
-	int		line_s;
+// int	main()
+// {
+// 	int		fd;
+// 	char	*line;
+// 	int		line_s;
 
-	line_s = 1;
-	fd = open("file.txt", O_RDONLY);
+// 	line_s = 1;
+// 	fd = open("file.txt", O_RDONLY);
 
-	while (line = get_next_line(fd))
-		printf("%d->%s\n", line_s++, line);
-}
+// 	while (line = get_next_line(fd))
+// 		printf("%d->%s\n", line_s++, line);
+// }
