@@ -22,6 +22,12 @@ void	ft_create_list(t_list **list, int fd)
 		ft_merge(list, buf);
 	}
 }
+char	ft_get_line(t_list *list)
+{
+	int		str_len;
+	char	*next_str;
+
+}
 
 char	*get_next_line(int fd)
 {
