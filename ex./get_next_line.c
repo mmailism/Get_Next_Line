@@ -18,8 +18,8 @@ void	ft_swipe_list(t_list **list)
 	k = 0;
 	while (last_node->str_buf[i] != '\0' && last_node->str_buf[i] != '\n')
 		i++;
-	while (last_node->str_buf[i] != '\0' && last_node->str_buf[i++])
-		buf[k++] = last_node->str_buf[i];
+	while (last_node->str_buf[i] != '\0' && last_node->str_buf[++i])
+		buf[++k] = last_node->str_buf[i];
 	buf[k] = '\0';
 	clean_node->str_buf = buf;
 	clean_node->next = NULL;
@@ -107,15 +107,15 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-// int	main()
-// {
-// 	int		fd;
-// 	char	*line;
-// 	int		line_s;
+int	main()
+{
+	int		fd;
+	char	*line;
+	int		line_s;
 
-// 	line_s = 1;
-// 	fd = open("file.txt", O_RDONLY);
+	line_s = 1;
+	fd = open("file.txt", O_RDONLY);
 
-// 	while (line = get_next_line(fd))
-// 		printf("%d->%s\n", line_s++, line);
-// }
+	while (line = get_next_line(fd))
+		printf("%d->%s\n", line_s++, line);
+}

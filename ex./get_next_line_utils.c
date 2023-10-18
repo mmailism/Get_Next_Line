@@ -71,11 +71,11 @@ void	ft_copy_str(t_list *list, char *str)
 		{
 			if (list->str_buf[i] == '\n')
 			{
-				str[k++] = '\n';
+				str[++k] = '\n';
 				str[k] = '\0';
 				return ;
 			}
-			str[k++] = list->str_buf[i++];
+			str[k++] = list->str_buf[++i]; //cut the line is ++i
 		}
 		list = list->next;
 	}
