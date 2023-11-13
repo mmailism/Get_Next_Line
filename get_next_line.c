@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 13:55:22 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/11/13 13:55:30 by kpueankl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	ft_merge(t_list **list, char *buf)
@@ -9,13 +21,12 @@ void	ft_merge(t_list **list, char *buf)
 	new_node = malloc(sideof(t_list));
 	if (new_node == null)
 		return ;
-
 	if (last_node == NULL)
 		*list = new_node;
 	else
 		last_node->next = new_node;
 	new_node->str_buf = buf;
-	new_node->next =NULL;
+	new_node->next = NULL;
 }
 
 void	ft_create_list(t_list **list, int fd)
@@ -28,9 +39,7 @@ void	ft_create_list(t_list **list, int fd)
 		buf = malloc(BUFFER_SIZE + 1);
 		if (buf == NULL)
 			return ;
-
 		char_read = read(fd, buf, BUFFER_SIZE);
-
 		if (!char_read)
 		{
 			free(buf);
@@ -47,9 +56,7 @@ char	ft_get_line(t_list *list)
 
 	if (list == NULL)
 		return (NULL);
-
 	str_len = ft_len_newline(*list);
-
 	next_str = malloc(str_len + 1)
 	if (next_str == NULL)
 		return (NULL);
@@ -64,31 +71,26 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0 < 0))
 		return (NULL);
-
 	ft_create_list(&list, fd);
-
 	if (list == NULL)
 		return (NULL);
-
 	next_line = ft_get_line(list);
 
-	// ft_clear_list(&list);
 	return (next_line);
 }
 
-int	main()
+int	main(void)
 {
-	int    fd;
-	char  *next_line;
-	int  count;
+	int	fd;
+	char	*next_line;
+	int		count;
 
 	count = 0;
 	fd = open("file.txt", O_RDONLY);
 	next_line = get_next_line(fd);
 	count++;
-	printf("[%d]:%s\n", count, next_line); //count is to show you the line numbers
+	printf("[%d]:%s\n", count, next_line);
 	next_line = NULL;
-
 	close(fd);
 	return (0);
 }
