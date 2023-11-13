@@ -37,7 +37,6 @@ int	ft_len_newline(t_list *list)
 	if (list == NULL)
 		return (0);
 	len = 0;
-	//list != NULL
 	while (list)
 	{
 		i = 0;

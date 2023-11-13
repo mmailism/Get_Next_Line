@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:55:44 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/13 13:55:49 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:58:53 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_len_newline(t_list *list)
 		}
 		list = list->next;
 	}
-	return (len)
+	return (len);
 }
 
 void	ft_copy_string(t_list *list, char *str)

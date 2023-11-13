@@ -115,7 +115,6 @@ int	main()
 
 	line_s = 1;
 	fd = open("file.txt", O_RDONLY);
-
-	while (line = get_next_line(fd))
+	while (line == get_next_line(fd))
 		printf("%d->%s\n", line_s++, line);
 }
