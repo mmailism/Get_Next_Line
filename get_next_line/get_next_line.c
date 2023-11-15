@@ -1,31 +1,44 @@
 #include "get_next_line.h"
 
 char	ft_switch_line(t_list *list_line)
-{
+{ // switch front to keep
 	t_list	*last_node;
 	t_list	*clear_node;
 	char	*buf;
-	int		i;
-	int		k;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	clear_node = malloc(sizeof(t_list));
 	if (buf == NULL || clear_node == NULL)
 		return ;
-	last_node = ft_find_last_node(list_line);
-
-	i = 0;
-	k = 0;
-	while (last_node->list[i] != '\0' && last_node->list[i] != '\n')
-		i++;
-	while (last_node->list[i] != '\0' && last_node->list[++i])
-		buf[k++] = last_node->list[i];
-	buf[k] = '\0';
-	clear_node->list = buf;
-	clear_node->next = NULL;	
 }
 
-char	ft_get_line(t_list *list_line)
+int	ft_len_newline(t_list *list_line)
+{
+	int	i;
+	int	len;
+
+	if (list_line == NULL)
+		return (0);
+	len = 0;
+	while (list_line)
+	{
+		i = 0;
+		while (list_line->list[i])
+		{
+			if (list_line->list[i] == '\n')
+			{
+				len++;
+				return (len);
+			}
+			i++;
+			++len;
+		}
+		list_line = list_line->next;
+	}
+	return (len);
+}
+
+char	*ft_get_line(t_list *list_line)
 {
 	int		str_len;
 	char	*next_str;
