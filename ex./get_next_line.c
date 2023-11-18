@@ -1,120 +1,209 @@
 #include "get_next_line.h"
 
-void	ft_swipe_list(t_list **list)
-{
-	t_list	*last_node;
-	t_list	*clean_node;
-	int		i;
-	int		k;
-	char	*buf;
-
-	buf = malloc(BUFFER_SIZE + 1);
-	clean_node = malloc(sizeof(t_list));
-	if (buf == NULL || clean_node == NULL)
-		return ;
-	last_node = ft_find_last_node(*list);
-
-	i = 0;
-	k = 0;
-	while (last_node->str_buf[i] != '\0' && last_node->str_buf[i] != '\n')
-		i++;
-	while (last_node->str_buf[i] != '\0' && last_node->str_buf[++i])
-		buf[++k] = last_node->str_buf[i];
-	buf[k] = '\0';
-	clean_node->str_buf = buf;
-	clean_node->next = NULL;
-	dealloc(list, clean_node, buf);
-}
-
-void	ft_merge(t_list **list, char *buf)
+t_list	*ft_lstnew(char *content)
 {
 	t_list	*new_node;
-	t_list	*last_node;
 
-	last_node = ft_find_last_node(*list);
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return ;
-	//if list empty
-	//if NULL == *list
-	if (last_node == NULL)
-		*list = new_node;
-	else
-		last_node->next = new_node;
-
-	new_node->str_buf = buf;
+	new_node = malloc(sizeof(*new_node));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->length = 0;
 	new_node->next = NULL;
+	return (new_node);
 }
 
-void	ft_create_list(t_list **list, int fd)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		char_read;
-	char	*buf;
-
-	//scan line if '\n' present
-	while (!ft_found_newline(*list))
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
 	{
-		buf = malloc(BUFFER_SIZE + 1);
-		if (buf == NULL)
-			return ;
+		lst = lst->next;
+	}
+	return (lst);
+}
 
-		char_read = read(fd, buf, BUFFER_SIZE);
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*temp;
 
-		if (!char_read)
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	temp = ft_lstlast(*lst);
+	temp->next = new;
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp_lst;
+
+	if (!lst || !del)
+		return ;
+	while (*lst != NULL)
+	{
+		temp_lst = *lst;
+		*lst = (*lst)->next;
+		free(temp_lst->content);
+		free(temp_lst);
+	}
+	*lst = NULL;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void			*arr;
+	size_t			alloc_size;
+	size_t			i;
+	unsigned char	*cast_s;
+
+	alloc_size = nmemb * size;
+	if (!alloc_size || alloc_size / nmemb != size)
+		return (NULL);
+	arr = malloc(alloc_size);
+	if (arr == NULL)
+		return (NULL);
+	i = 0;
+	cast_s = arr;
+	while (i < alloc_size)
+	{
+		cast_s[i] = '\0';
+		i++;
+	}
+	return (cast_s);
+}
+
+static int	is_new_line(t_list *cache)
+{
+	int		i;
+
+	cache = ft_lstlast(cache);
+	if (!cache)
+		return (0);
+	i = 0;
+	while (cache->content[i] != '\0')
+	{
+		if (cache->content[i] == '\n')
 		{
-			free(buf);
+			cache->length = ++i;
+			return (1);
+		}
+		i++;
+	}
+	cache->length = i;
+	return (0);
+}
+
+static void	read_line(t_list **cache, int fd)
+{
+	int		output;
+	char	*buffer;
+	t_list	*new_node;
+
+	output = 0;
+	while (!is_new_line(*cache))
+	{
+		buffer = NULL;
+		new_node = ft_lstnew(buffer);
+		new_node->content = ft_calloc(sizeof(*buffer), (BUFFER_SIZE + 1));
+		output = read(fd, new_node->content, BUFFER_SIZE);
+		if (output == 0 || output == -1)
+		{
+			free(new_node->content);
+			free(new_node);
 			return ;
 		}
-		buf[char_read] = '\0';
-		ft_merge(list, buf);
+		new_node->content[BUFFER_SIZE] = '\0';
+		ft_lstadd_back(cache, new_node);
 	}
 }
 
-char	*ft_get_line(t_list *list)
+static void	create_line(t_list *cache, char **line)
 {
-	int		str_len;
-	char	*next_str;
+	int		ln_size;
+	int		i;
+	t_list	*temp;
 
-	if (list == NULL)
-		return (NULL);
-	//Count char till '\n' So know how much to malloc
-	str_len = ft_len_newline(list);
-	next_str = malloc(str_len + 1);
-	if (next_str == NULL)
-		return (NULL);
+	temp = cache;
+	ln_size = 0;
+	while (temp)
+	{
+		ln_size = ln_size + temp->length;
+		temp = temp->next;
+	}
+	if (!ln_size)
+		return ;
+	*line = malloc(sizeof(**line) * (ln_size + 1));
+	if (!line)
+		return ;
+	ln_size = 0;
+	while (cache && cache->content)
+	{
+		i = 0;
+		while (cache->content[i] && i < cache->length)
+			(*line)[ln_size++] = cache->content[i++];
+		cache = cache->next;
+	}
+	(*line)[ln_size] = '\0';
+}
 
-	//Copy string in buffer and return
-	ft_copy_str(list, next_str);
-	return (next_str);
+static void	refactor_line(t_list **cache)
+{
+	t_list	*temp;
+	t_list	*new_node;
+	char	*content;
+	int		i;
+	int		size;
+
+	size = 0;
+	temp = ft_lstlast(*cache);
+	if (!temp)
+		return ;
+	content = temp->content;
+	size = temp->length;
+	temp->content = NULL;
+	ft_lstclear(cache, free);
+	i = 0;
+	if (content[size] != '\0')
+	{
+		while (content[size] != '\0')
+			content[i++] = content[size++];
+		content[i] = '\0';
+		new_node = ft_lstnew(content);
+		ft_lstadd_back(cache, new_node);
+	}
+	else
+		free(content);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
-	char			*next_line;
-	//fd only positive | read -1 if some problems on reading
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0 < 0))
-		return (NULL);
-	//Create list till i stumble into '\n'
-	ft_create_list(&list, fd);
+	static t_list	*cache = NULL;
+	char			*line;
 
-	if (list == NULL)
+	line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	//fetch line from list
-	next_line = ft_get_line(list);
-	//
-	ft_swipe_list(&list);
-	return (next_line);
+	read_line(&cache, fd);
+	if (!cache)
+		return (NULL);
+	create_line(cache, &line);
+	refactor_line(&cache);
+	return (line);
 }
 
-int	main()
+int	main(void)
 {
-	int		fd;
-	char	*line;
-	int		line_s;
+	int	fd = open("59text.txt", O_RDONLY);
 
-	line_s = 1;
-	fd = open("file.txt", O_RDONLY);
-	while (line == get_next_line(fd))
-		printf("%d->%s\n", line_s++, line);
+	printf("==main==%s", get_next_line(fd));
+	printf("==main==%s", get_next_line(fd));
+	printf("==main==%s", get_next_line(fd));
+	close (fd);
+	return(0);
 }
