@@ -27,55 +27,32 @@ void	ft_merge(t_list **str_buf, char *buf)
 	next_node->next = '\0';
 }
 
-// int	ft_find_newline(t_list *str_buf)
-// {
-// 	int	i;
-
-// 	if (str_buf == NULL)
-// 		return (0);
-// 	while (str_buf)
-// 	{
-// 		i = 0;
-// 		while (str_buf->list[i] && i < BUFFER_SIZE)
-// 		{
-// 			if (str_buf->list[i] == '\n')
-// 				return (i);
-// 			i++;
-// 		}
-// 		str_buf = str_buf->next;
-// 	}
-// 	return (0);
-// }
-
-// char	ft_create_list(t_list **str_buf, int fd)
-// {
-// 	char	*buf;
-// 	int		read_char;
-
-// 	while (!ft_find_newline(*str_buf))
-// 	{
-// 		buf = malloc(BUFFER_SIZE + 1);
-// 		read_char = read(fd, buf, BUFFER_SIZE);
-// 		if (!read_char)
-// 		{
-// 			free(buf);
-// 		}
-// 		buf[read_char] = '\0';
-// 		ft_merge(str_buf, buf);
-// 		printf("test s : %s\n test_read : %d\n", s, read_char);
-// 	}
-// 	return (buf);
-// }
-
-char	*get_next_line(int fd)
+int	ft_find_newline(t_list *str_buf)
 {
-	static t_list	*str_buf = NULL;
+	int	i;
+
+	if (str_buf == NULL)
+		return (0);
+	while (str_buf)
+	{
+		i = 0;
+		while (str_buf->list[i] && i < BUFFER_SIZE)
+		{
+			if (str_buf->list[i] == '\n')
+				return (i);
+			i++;
+		}
+		str_buf = str_buf->next;
+	}
+	return (0);
+}
+
+char	ft_create_list(t_list **str_buf, int fd)
+{
 	char	*buf;
 	int		read_char;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	while (str_buf)
+	while (!ft_find_newline(*str_buf))
 	{
 		buf = malloc(BUFFER_SIZE + 1);
 		read_char = read(fd, buf, BUFFER_SIZE);
@@ -84,10 +61,24 @@ char	*get_next_line(int fd)
 			free(buf);
 		}
 		buf[read_char] = '\0';
-		ft_merge(&str_buf, buf);
-		printf("test s : %s\n test_read : %d\n", buf, read_char);
+		ft_merge(str_buf, buf);
+		printf("test s : %s\n test_read : %d\n", s, read_char);
 	}
 	return (buf);
+}
+
+char	*get_next_line(int fd)
+{
+	static t_list	*str_buf = NULL;
+	char			result;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	ft_create_list(&str_buf, fd);
+
+	if (str_buf == NULL)
+		return (NULL);
+	ft_getline
 }
 
 int	main(void)
