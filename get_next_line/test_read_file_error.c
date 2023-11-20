@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test_read_file_error.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 14:20:20 by kdanchal          #+#    #+#             */
-/*   Updated: 2023/11/18 14:09:41 by iammai           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -50,9 +38,7 @@ int	main(void)
 	
 
 
-	printf("==main==%s", gnl(fd));
-	printf("==main==%s", gnl(fd));
-	printf("==main==%s\n", gnl(fd));
+	printf("\n==main==%s\n", gnl(fd));
 	close (fd);
 	return(0);
 }

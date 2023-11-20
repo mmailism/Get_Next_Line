@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_B.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 15:13:14 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/11/20 15:13:17 by kpueankl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(char *content)
 {
 	t_list	*new_node;
 
@@ -12,45 +24,45 @@ t_list	*ft_lstnew(void *content)
 	return (new_node);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **list, t_list *new)
 {
 	t_list	*temp;
 
-	if (!lst || !new)
+	if (!list || !new)
 		return ;
-	if (!(*lst))
+	if (!(*list))
 	{
-		*lst = new;
+		*list = new;
 		return ;
 	}
-	temp = *lst;
+	temp = *list;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list *list)
 {
-	if (lst == NULL)
+	if (list == NULL)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	while (list->next)
+		list = list->next;
+	return (list);
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **list, void (*del)(void *))
 {
-	if (!lst || !del || !(*lst))
+	if (!list || !del || !(*list))
 		return ;
-	ft_lstclear(&(*lst)->next, del);
-	del((*lst)->content);
-	free(*lst);
-	*lst = NULL;
+	ft_lstclear(&(*list)->next, del);
+	del((*list)->content);
+	free(*list);
+	*list = NULL;
 }
 
 int	ft_find_newline(t_list *list)
 {
-	int	i;
+	int		i;
 
 	if (!list)
 		return (0);
@@ -65,25 +77,22 @@ int	ft_find_newline(t_list *list)
 		i++;
 	}
 	list->len = i;
-	return (0);
+	return (i);
 }
 
 void	ft_read_list(t_list **list, int fd)
 {
-	t_list	*new_node;
-	char	*buf;
-	int		read_list;
+	t_list		*new_node;
+	char		*buf;
+	static int	read_list = 0;
 
-	read_list = 0;
 	while (!ft_find_newline(*list))
 	{
-		buf = NULL;
+		buf = malloc(BUFFER_SIZE + 1);
 		new_node = ft_lstnew(buf);
-		new_node->content = (char *)malloc(BUFFER_SIZE + 1);
 		read_list = read(fd, buf, BUFFER_SIZE);
 		if (read_list == 0 || read_list == -1)
 		{
-			free(new_node->content);
 			free(new_node);
 			return ;
 		}
@@ -105,9 +114,7 @@ void	ft_create_list(t_list *list, char **result)
 		len = len + tmp->len;
 		tmp = tmp->next;
 	}
-	if (!len)
-		return ;
-	*result = malloc(sizeof(**result) * (len + 1));
+	*result = malloc(sizeof(**result) + (len + 1));
 	if (!result)
 		return ;
 	len = 0;
@@ -115,7 +122,7 @@ void	ft_create_list(t_list *list, char **result)
 	{
 		i = 0;
 		while (list->content[i] && i < list->len)
-			(*result)[len++] = list->content[i++];
+			(*result)[len++] = list->content[++i];
 		list = list->next;
 	}
 	(*result)[len] = '\0';
@@ -141,7 +148,7 @@ void	ft_switch_list(t_list **list)
 	if (content[k] != '\0')
 	{
 		while (content[k] != '\0')
-			content[i++] = content[k++];
+			content[i++] = content[++k];
 		content[i] = '\0';
 		new_node = ft_lstnew(content);
 		ft_lstadd_back(list, new_node);
@@ -159,8 +166,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read_list(&list, fd);
-	if (!list)
-		return (NULL);
+	// if (!list)
+	// 	return (NULL);
 	ft_create_list(list, &result);
 	ft_switch_list(&list);
 	return (result);
@@ -170,9 +177,10 @@ int	main(void)
 {
 	int	fd = open("59text.txt", O_RDONLY);
 
-	printf("==main==%s\n", get_next_line(fd));
-	printf("==main==%s\n", get_next_line(fd));
-	printf("==main==%s\n", get_next_line(fd));
+	printf("test1 :%s\n", get_next_line(fd));
+	printf("test2 :%s\n", get_next_line(fd));
+	printf("test3 :%s\n", get_next_line(fd));
+	printf("test4 :%s\n", get_next_line(fd));
 	close (fd);
 	return(0);
 }

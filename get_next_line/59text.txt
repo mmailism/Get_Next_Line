@@ -1,5 +1,3 @@
-abcd\nef
-ghijkl
-mn\nopqr
-st\n\nuvwx
-yz
+1abc
+2def
+3xyz
