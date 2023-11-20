@@ -6,7 +6,7 @@
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/20 16:23:58 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:07:52 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_create_list(t_list *list, char **res)
 	{
 		i = 0;
 		while (list->content[i] && i < list->len)
-			(*res)[len++] = list->content[++i];
+			(*res)[len++] = list->content[i++];
 		list = list->next;
 	}
 	(*res)[len] = '\0';
@@ -113,24 +113,22 @@ void	ft_create_list(t_list *list, char **res)
 
 void	ft_read_file(t_list **list, int fd)
 {
-	t_list		*node_s;
-	char		*buf;
-	static int	read_file = 0;
+	t_list	*node_s;
+	char	*buf;
+	int		read_file;
 
-	printf("==fd==%d\n",fd);
+	printf("\n== fd : %d ==",fd);
 	
 	buf = (char *)malloc(BUFFER_SIZE + 1);
 	read_file = read(fd ,buf, BUFFER_SIZE);
-	
-	printf("\nread_file=%d\nbuf=%s\n", read_file, buf);
-
-	node_s = ft_lstnew(buf);
 	if (read_file == 0 || read_file == -1)
 		{
-			free(node_s);
+			free(buf);
 			return ;
 		}
+	node_s = ft_lstnew(buf);
 	ft_lstadd_back(list, node_s);
+	printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
 }
 
 char	*get_next_line(int fd)
@@ -140,6 +138,7 @@ char	*get_next_line(int fd)
 
 	if (fd <= 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	printf("==============");
 	ft_read_file(&list, fd);
 	ft_create_list(list, &res);
 	// ft_switch_list(&list);
@@ -152,10 +151,11 @@ int main()
 	
 	fd = open("59text.txt", O_RDONLY);
 
-	printf("test1 :%s\n", get_next_line(fd));
-	printf("test2 :%s\n", get_next_line(fd));
-	printf("test3 :%s\n", get_next_line(fd));
-	printf("test4 :%s\n", get_next_line(fd));
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("==============\n");
 	close (fd);
 	return(0);
 }
