@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_A.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/20 17:12:58 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:59:02 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,40 @@ void	ft_lstadd_back(t_list **list, t_list *new)
 	temp->next = new;
 }
 
-// t_list	*ft_lstlast(t_list *list)
-// {
-// 	if (list == NULL)
-// 		return (NULL);
-// 	while (list->next)
-// 		list = list->next;
-// 	return (list);
-// }
+t_list	*ft_lstlast(t_list *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
 
-// void	ft_lstclear(t_list **list, void (*del)(void *))
-// {
-// 	if (!list || !del || !(*list))
-// 		return ;
-// 	ft_lstclear(&(*list)->next, del);
-// 	del((*list)->content);
-// 	free(*list);
-// 	*list = NULL;
-// }
+void	ft_lstclear(t_list **list, void (*del)(void *))
+{
+	if (!list || !del || !(*list))
+		return ;
+	ft_lstclear(&(*list)->next, del);
+	del((*list)->content);
+	free(*list);
+	*list = NULL;
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*i;
+	size_t			j;
+
+	i = s;
+	j = 0;
+	if (n == 0)
+		return ;
+	while (j < n)
+	{
+		i[j] = 0;
+		j++;
+	}
+}
 
 void	ft_create_list(t_list *list, char **res)
 {
@@ -73,7 +89,7 @@ void	ft_create_list(t_list *list, char **res)
 		len = len + tmp->len;
 		tmp = tmp->next;
 	}
-	*res = malloc(sizeof(*list) + (len + 1));
+	*res = malloc(sizeof(**res) + (len + 1));
 	if (!res)
 		return ;
 	len = 0;
@@ -84,32 +100,57 @@ void	ft_create_list(t_list *list, char **res)
 			(*res)[len++] = list->content[i++];
 		list = list->next;
 	}
-	(*res)[len] = '\0';
 }
 
-// void	ft_switch_list(t_list **list)
-// {
-// 	t_list	*tmp;
-// 	t_list	*new_node;
-// 	char	*content;
-// 	int		i;
-// 	int		k;
+void	ft_switch_list(t_list **list)
+{
+	t_list	*tmp;
+	t_list	*new_node;
+	char	*content;
+	int		i;
+	int		k;
 
-// 	k = 0;
-// 	if (!tmp)
-// 		return ;
-// 	tmp = ft_lstclear(list, free);
-// 	tmp->content = NULL;
-// 	i = 0;
-// 	if (content[k] != '\0')
-// 	{
-// 		while (content[k] != '\0')
-// 			content[i++] = content[++k];
-// 		content[i] = '\0';
-// 	}
-// 	else
-// 		free(content);
-// }
+	k = 0;
+	tmp = ft_lstlast(*list);
+	if (!tmp)
+		return ;
+	content = tmp->content;
+	k = tmp->len;
+	tmp->content = NULL;
+	ft_lstclear(list, free);
+	if (content[k] != '\0')
+	{
+		i = 0;
+		while (content[k] != '\0')
+			content[i++] = content[k++];
+		content[i] = '\0';
+		new_node = ft_lstnew(content);
+		ft_lstadd_back(list, new_node);
+	}
+	else
+		free(content);
+}
+
+int	ft_find_newline(t_list *list)
+{
+	int	i;
+
+	list = ft_lstlast(list);
+	if (!list)
+		return (0);
+	while (list->content[i] != '\0')
+	{
+		i = 0;
+		if (list->content[i] == '\n')
+		{
+			list->len = ++i;
+			return (1);
+		}
+		i++;
+	}
+	list->len = i;
+	return (i);
+}
 
 void	ft_read_file(t_list **list, int fd)
 {
@@ -117,18 +158,24 @@ void	ft_read_file(t_list **list, int fd)
 	char	*buf;
 	int		read_file;
 
-	printf("\n== fd : %d ==",fd);
-	
+	printf("\n== fd : %d ==", fd);
+	read_file = 0;
 	buf = (char *)malloc(BUFFER_SIZE + 1);
-	read_file = read(fd ,buf, BUFFER_SIZE);
-	if (read_file == 0 || read_file == -1)
+	ft_bzero(buf, BUFFER_SIZE);
+	while (!ft_find_newline(*list))
+	{
+		// printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
+		node_s = ft_lstnew(buf);
+		read_file = read(fd ,buf, BUFFER_SIZE);
+		if (read_file == 0 || read_file == -1)
 		{
 			free(buf);
 			return ;
 		}
-	node_s = ft_lstnew(buf);
-	ft_lstadd_back(list, node_s);
-	printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
+		node_s->content[BUFFER_SIZE] = '\0';
+		ft_lstadd_back(list, node_s);
+		printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
+	}
 }
 
 char	*get_next_line(int fd)
@@ -136,12 +183,16 @@ char	*get_next_line(int fd)
 	static t_list	*list = NULL;
 	char			*res;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0)
+	res = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	printf("==============");
 	ft_read_file(&list, fd);
+	if (!list)
+		return (NULL);
 	ft_create_list(list, &res);
-	// ft_switch_list(&list);
+	// printf("== res : %s ==\n", res);
+	ft_switch_list(&list);
 	return (res);
 }
 
