@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:59:02 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/22 18:45:28 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void	ft_create_list(t_list *list, char **res)
 	while (tmp)
 	{
 		len = len + tmp->len;
+		printf("len1 : %d\n", len);
 		tmp = tmp->next;
 	}
 	*res = malloc(sizeof(**res) + (len + 1));
 	if (!res)
 		return ;
+	printf("len2 : %d\n", len);
 	len = 0;
 	while (list && list->content)
 	{
@@ -100,6 +102,7 @@ void	ft_create_list(t_list *list, char **res)
 			(*res)[len++] = list->content[i++];
 		list = list->next;
 	}
+	printf("len3 : %d\n", len);
 }
 
 void	ft_switch_list(t_list **list)
@@ -117,12 +120,15 @@ void	ft_switch_list(t_list **list)
 	content = tmp->content;
 	k = tmp->len;
 	tmp->content = NULL;
+	printf("content : %s\n", content);
 	ft_lstclear(list, free);
 	if (content[k] != '\0')
 	{
 		i = 0;
 		while (content[k] != '\0')
+		{
 			content[i++] = content[k++];
+		}
 		content[i] = '\0';
 		new_node = ft_lstnew(content);
 		ft_lstadd_back(list, new_node);

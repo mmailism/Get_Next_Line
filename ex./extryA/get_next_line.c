@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:55:22 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/13 13:59:37 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:55:46 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_merge(t_list **list, char *buf)
 	t_list	*last_node;
 
 	last_node = ft_find_lastnode(*list);
-	new_node = malloc(sideof(t_list));
-	if (new_node == null)
+	new_node = malloc(sideof(**list));
+	if (new_node == NULL)
 		return ;
 	if (last_node == NULL)
 		*list = new_node;
@@ -57,7 +57,7 @@ char	ft_get_line(t_list *list)
 
 	if (list == NULL)
 		return (NULL);
-	str_len = ft_len_newline(*list);
+	str_len = ft_len_newline(&list);
 	next_str = malloc(str_len + 1);
 	if (next_str == NULL)
 		return (NULL);

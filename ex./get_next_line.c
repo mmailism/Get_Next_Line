@@ -65,7 +65,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	alloc_size = nmemb * size;
 	if (!alloc_size || alloc_size / nmemb != size)
 		return (NULL);
-	arr = malloc(alloc_size);
+	arr = (void *)malloc(alloc_size);
 	if (arr == NULL)
 		return (NULL);
 	i = 0;
@@ -78,16 +78,16 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (cast_s);
 }
 
-static int	is_new_line(t_list *cache)
+int	is_new_line(t_list *cache)
 {
 	int		i;
 
 	cache = ft_lstlast(cache);
 	if (!cache)
 		return (0);
-	i = 0;
 	while (cache->content[i] != '\0')
 	{
+		i = 0;
 		if (cache->content[i] == '\n')
 		{
 			cache->length = ++i;
@@ -96,7 +96,7 @@ static int	is_new_line(t_list *cache)
 		i++;
 	}
 	cache->length = i;
-	return (0);
+	return (i);
 }
 
 static void	read_line(t_list **cache, int fd)
@@ -106,9 +106,9 @@ static void	read_line(t_list **cache, int fd)
 	t_list	*new_node;
 
 	output = 0;
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	while (!is_new_line(*cache))
 	{
-		buffer = NULL;
 		new_node = ft_lstnew(buffer);
 		new_node->content = ft_calloc(sizeof(*buffer), (BUFFER_SIZE + 1));
 		output = read(fd, new_node->content, BUFFER_SIZE);
@@ -197,13 +197,17 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+int main()
 {
-	int	fd = open("59text.txt", O_RDONLY);
+	int fd;
+	
+	fd = open("59text.txt", O_RDONLY);
 
-	printf("==main==%s", get_next_line(fd));
-	printf("==main==%s", get_next_line(fd));
-	printf("==main==%s", get_next_line(fd));
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("==============\n");
 	close (fd);
 	return(0);
 }
