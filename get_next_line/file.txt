@@ -1,1 +1,0 @@
-a1b2c3d4e5f6g7h8i9j0k-l_m nopqrstuvwxyz\nb1c2d3e4f5g6h7i8j9k0l-m_n opqrstuvwxyz\nc1d2e3f4g5h6i7j8k9l0m-n_o pqrstuvwxyz\nd1e2f3g4h5i6j7k8l9m0n-o_p qrstuvwxyz\ne1f2g3h4i5j6k7l8m9n0o-p_q rstuvwxyz\nf1g2h3i4j5k6l7m8n9o0p-q_r stuvwxyz\ng1h2i3j4k5l6m7n8o9p0q-r_s tuvwxyz\n
