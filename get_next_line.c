@@ -6,33 +6,29 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/23 17:31:32 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/24 17:00:56 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_create_list(t_list *list, char **result)
+static void	ft_create_list(t_list *list, char **result)
 {
-	t_list	*tmp_n;
+	t_list	*tmp;
 	int		i;
 	int		len;
 
-	tmp_n = list;
-	len = 0;
-	while (tmp_n)
-	{
-		len = len + tmp_n->len;
-		tmp_n = tmp_n->next;
-	}
-	*result = (char *)malloc(sizeof(**result)) + (len + 1);
+	tmp = list;
+	// while (tmp)
+	// 	tmp = tmp->next;
+	*result = (char *)malloc(sizeof(**result)) + (BUFFER_SIZE + 1);
 	if (!result)
 		return ;
 	len = 0;
 	while (list && list->content)
 	{
 		i = 0;
-		while (list->content[i] && i < list->len)
+		while (list->content[i])
 			(*result)[len++] = list->content[i++];
 		list = list->next;
 	}
@@ -57,14 +53,14 @@ int	ft_found_newline(t_list *list)
 		i++;
 	}
 	list->len = i;
-	return (i);
+	return (0);
 }
 
-void	ft_read_list(t_list **list, int fd)
+static void	ft_read_list(t_list **list, int fd)
 {
-	t_list *node_res;
-	char    *buf;
-	int     read_list;
+	t_list	*node_res;
+	char	*buf;
+	int		read_list;
 
 	read_list = 0;
 	buf = (char *)malloc(BUFFER_SIZE + 1);
@@ -83,7 +79,7 @@ void	ft_read_list(t_list **list, int fd)
 	}
 }
 
-void	ft_switch_list(t_list **list)
+static void	ft_switch_list(t_list **list)
 {
 	t_list	*tmp;
 	t_list	*new_node;
@@ -113,8 +109,8 @@ void	ft_switch_list(t_list **list)
 
 char	*get_next_line(int fd)
 {
-	static t_list   *list = NULL;
-	char            *result;
+	t_list	*list = NULL;
+	char	*result;
 
 	result = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -127,17 +123,17 @@ char	*get_next_line(int fd)
 	return (result);
 }
 
-// int main()
-// {
-// 	int fd;
+int main()
+{
+	int fd;
 	
-// 	fd = open("59text.txt", O_RDONLY);
+	fd = open("59text.txt", O_RDONLY);
 
-// 	printf("-- out 1 : %s --\n", get_next_line(fd));
-// 	printf("-- out 2 : %s --\n", get_next_line(fd));
-// 	printf("-- out 3 : %s --\n", get_next_line(fd));
-// 	printf("-- out 4 : %s --\n", get_next_line(fd));
-// 	printf("==============\n");
-// 	close (fd);
-// 	return(0);
-// }
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("==============\n");
+	close (fd);
+	return(0);
+}
