@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/28 16:22:07 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/29 16:39:03 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_create_list(t_list *list, char **res)
 	tmp = list; //กำหนดให้ 1 ตัวแปร เท่ากับ ที่รับมา
 	while (tmp) // เริ่มลูป
 		tmp = tmp->next; //แล้วส่ง tmp เข้า linklist ตัวถัดไป
-	*res = (char *)malloc(sizeof(BUFFER_SIZE + 1)); //
+	*res = (char *)malloc(sizeof(**res));
 	if (!res)
 		return ;
 	// printf("len2 : %d\n", len);
@@ -91,26 +91,26 @@ void	ft_read_file(t_list **list, int fd)
 	char	*buf;
 	int		read_file;
 
-	printf("\n== fd : %d ==", fd);
-	read_file = 0;
-	buf = (char *)malloc(BUFFER_SIZE + 1); //กำหนดให้ ตัวแปรมีค่าเท่ากับ BUFFER_SIZE + 1
+	// printf("\n== fd : %d ==", fd);
+	buf = malloc(sizeof(char) * BUFFER_SIZE + 1); //กำหนดให้ ตัวแปรมีค่าเท่ากับ BUFFER_SIZE + 1
 	ft_bzero(buf, BUFFER_SIZE); // set 0 ให้กับ buf
-	while (!ft_find_newline(*list)) // เข้าลูป ถ้าไม่เจอ \n
+	while (!ft_find_newline(*list) && read_file != 0) // เข้าลูป ถ้าไม่เจอ \n
 	{
 		// printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
 		node_s = ft_lstnew(buf); // กำหนดให้ linklist
-		read_file = read(fd ,buf, BUFFER_SIZE); // ทำการ read
 		printf("\nTEST\n");
-		if (read_file == 0 || read_file == -1)
+		read_file = read(fd ,buf, BUFFER_SIZE); // ทำการ read
+		if ((*list == NULL && read_file == 0) || read_file == -1)
 		{
 			free(buf);
 			return ;
 		}
+		// printf("\nTEST\n");
 		node_s->content[BUFFER_SIZE] = '\0';
 		ft_lstadd_back(list, node_s); //เพิ่มเข้าไปใน linklist
-		printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
+		// printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
 	}
-	// printf("buffer_size : %d\n", BUFFER_SIZE);
+	printf("buffer_size : %d\n", BUFFER_SIZE);
 }
 
 char	*get_next_line(int fd) // main funtion เป็น char
@@ -121,27 +121,32 @@ char	*get_next_line(int fd) // main funtion เป็น char
 	res = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	printf("==============");
+	printf("==============\n");
 	ft_read_file(&list, fd); // ฟังชัน read ทำการอ่านไฟล์ที่ต้องการ
+	// printf("\nTEST\n");
 	if (!list)
+	{
+		free(list);
 		return (NULL);
+	}
 	ft_create_list(list, &res); // สร้างพื้นที่เพื่อที่จะเก็บข้อมูล
 	// printf("== res : %s ==\n", res);
 	ft_switch_list(&list); /// สลับข้อมูลเพื่อที่จะสลับค่าและฟรีตัวเก่า
+	// free(list);
 	return (res);
 }
 
-// int main()
-// {
-// 	int fd;
+int main()
+{
+	int fd;
 	
-// 	fd = open("43_no_nl.txt", O_RDONLY);
+	fd = open("43_no_nl.txt", O_RDONLY);
 
-// 	printf("-- out 1 : %s --\n", get_next_line(fd));
-// 	printf("-- out 2 : %s --\n", get_next_line(fd));
-// 	printf("-- out 3 : %s --\n", get_next_line(fd));
-// 	printf("-- out 4 : %s --\n", get_next_line(fd));
-// 	printf("==============\n");
-// 	close (fd);
-// 	return(0);
-// }
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("==============\n");
+	close (fd);
+	return(0);
+}

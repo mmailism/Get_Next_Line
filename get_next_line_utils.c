@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/27 18:33:58 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/29 16:16:14 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_list	*ft_lstnew(char *content)
 	t_list	*new_node;
 
 	new_node = malloc(sizeof(*new_node));
-	if (!new_node)
-		return (NULL);
 	new_node->content = content;
 	new_node->next = NULL;
 	return (new_node);
