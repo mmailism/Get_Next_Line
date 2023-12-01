@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:39:03 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/01 15:46:43 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,17 @@ void	ft_switch_list(t_list **list)
 
 int	ft_find_newline(t_list *list)
 {
-	int	i;
+	int		i;
+	int		k;
+	char	*str;
 	
 	if (!list)
 		return (0);
-	i = 0;
-	while (list->content[i] != '\0')
+		while (list->content[i] != '\0')
 	{
 		if (list->content[i] == '\n')
 		{
-			list->len = ++i;
+			list->len = i++;
 			return(i);
 		}
 		i++;
@@ -98,7 +99,7 @@ void	ft_read_file(t_list **list, int fd)
 	{
 		// printf("\n{read_file : %d}\nbuf : %s\n", read_file, buf);
 		node_s = ft_lstnew(buf); // กำหนดให้ linklist
-		printf("\nTEST\n");
+		printf("TEST\n");
 		read_file = read(fd ,buf, BUFFER_SIZE); // ทำการ read
 		if ((*list == NULL && read_file == 0) || read_file == -1)
 		{
@@ -140,7 +141,7 @@ int main()
 {
 	int fd;
 	
-	fd = open("43_no_nl.txt", O_RDONLY);
+	fd = open("alternate_line_nl_no_nl.txt", O_RDONLY);
 
 	printf("-- out 1 : %s --\n", get_next_line(fd));
 	printf("-- out 2 : %s --\n", get_next_line(fd));
