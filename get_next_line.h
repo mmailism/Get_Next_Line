@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/01 17:01:29 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/05 17:06:14 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <stdio.h> // del before push
 
-# include <sys/types.h>
-# include <sys/vio.h>
+// # include <sys/types.h>
+// # include <sys/vio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 30
@@ -33,12 +33,12 @@ typedef struct s_list
 }                   t_list;
 
 char    *get_next_line(int fd);
-void	ft_switch_list(t_list **list);
-void	ft_create_list(t_list *list, char **result);
-t_list  *ft_lstnew(char *content);
-void    ft_lstadd_back(t_list **list, t_list *new);
-t_list  *ft_lstlast(t_list *list);
-void    ft_lstclear(t_list **list, void (*del)(void *));
-void    ft_bzero(void *s, size_t n);
+// void	ft_switch_list(t_list **list);
+// void	ft_create_list(t_list *list, char **result);
+// t_list  *ft_lstnew(char *content);
+// void    ft_lstadd_back(t_list **list, t_list *new);
+// t_list  *ft_lstlast(t_list *list);
+// void    ft_lstclear(t_list **list, void (*del)(void *));
+// void    ft_bzero(void *s, size_t n);
 
 #endif
