@@ -10,21 +10,33 @@ t_list	*ft_lstlast(t_list *list)
 	return (list);
 }
 
-void	ft_lstadd_back(t_list **list, t_list *new)
+void	ft_lstadd_back(t_list **list, char *buf, int read_file)
 {
-	t_list	*temp;
+	int		i;
+	t_list	*last;
+	t_list	*new_node;
 
-	if (!list || !new)
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
 		return ;
-	if (!(*list))
+	new_node->next = NULL;
+	new_node->content = malloc(sizeof(char) * (read_file + 1));
+	if (new_node->content == NULL)
+		return ;
+	i = 0;
+	while (buf[i] && i < read_file)
 	{
-		*list = new;
+		new_node->content[i] = buf[1];
+		i++;
+	}
+	new_node->content[i] = '\0';
+	if (*list == NULL)
+	{
+		*list = new_node;
 		return ;
 	}
-	temp = *list;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
+	last = ft_lstlast(*list);
+	last->next = new_node;
 }
 
 int	ft_find_newline(t_list *list)
@@ -49,11 +61,11 @@ void	ft_read_files(int fd, t_list **list, int *read_file)
 {
 	char	*buf;
 
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buf == NULL)
-		return ;
-	while (!ft_find_newline(*list) && *read != 0)
+	while (!ft_find_newline(*list) && *read_file != 0)
 	{
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (buf == NULL)
+			return ;
 		read_file = (int)read(fd, buf, BUFFER_SIZE);
 		if ((*list == NULL && read_file == 0) || read_file == -1)
 		{
@@ -61,37 +73,65 @@ void	ft_read_files(int fd, t_list **list, int *read_file)
 			return ;
 		}
 		buf[*read_file] = '\0';
-		ft_lstadd_back(list, read_file);
+		ft_lstadd_back(list, buf, read_file);
+		free(buf);
 	}
 }
 
-void	ft_create_list(t_list *list, char **readed)
+void	ft_create_list(t_list *list, char **res)
 {
-	int		len;
+	int		j;
 	int		i;
-	t_list	*new_node;
 
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
+	if (list == NULL)
 		return ;
-	new_node->next = NULL;
-	new_node->content = malloc(sizeof(char) * (readed + 1));
-	if (new_node->content == NULL)
+	gen_list(list, res);
+	if (*res == NULL)
 		return ;
-	i = 0;
-	while (buf[i] && i < readed)
+	j = 0;
+	while (list)
 	{
-		new_node->content[i] = buf[i];
+		i = 0;
 		while (list->content[i])
-			(*res)[len++] = list->content[i++];
+		{
+			if (list->content[i] == '\n')
+			{
+				(*res)[j++] = list->content[i];
+				break ;
+			}
+			(*res)[j++] = list->content[i++]
+		}
 		list = list->next;
 	}
-	printf("len : %d\n", len);
+	(*res)[j] = '\0';
 }
 
-void	ft_switch_list()
+void	ft_switch_list(t_list **list)
 {
+	t_list	*last;
+	t_list	*clear_node;
+	int		i;
+	int		j;
 
+	clear_node = malloc(sizeof(t_list));
+	if (list == NULL || clear_node == NULL)
+		return ;
+	clear_node-> = NULL;
+	last = ft_lstlast(*list);
+	i = 0;
+	while (last->content[i] && last->content[i] != '\n')
+		i++;
+	if (last->content[i] && last->content[i] != '\n')
+		i++;
+	clear_node->content = malloc(sizeof(char) * ((ft_strlen(last->content) - i) + 1));
+	if (clear_node->content == NULL)
+		return ;
+	j = 0;
+	while (last->content[i])
+		clear_node->content[j++] = last->content[i++];
+	clear_node->content[j] = '\0';
+	free(list);
+	*list = clear_node;
 }
 
 char	*get_next_line(int fd)
