@@ -10,7 +10,7 @@ t_list	*ft_lstlast(t_list *list)
 	return (list);
 }
 
-void	ft_lstadd_back(t_list **list, char *buf, int read_file)
+void	ft_lstadd_back(t_list **list, char *buf, int read_file) // !next fix
 {
 	int		i;
 	t_list	*last;
@@ -93,6 +93,8 @@ void	ft_read_file(int fd, t_list **list)
 		free(buf);
 	}
 }
+
+//!now ft_read_file
 
 void	ft_add_list(t_list *list, char **line)
 {
@@ -193,7 +195,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	read_file = 1;
-	line = (void *)0;
+	line = NULL;
 
 	printf("==============\n");
 	// 1. ฟังชัน read ทำการอ่านไฟล์ที่ต้องการ
