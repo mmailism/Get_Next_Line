@@ -6,70 +6,86 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:16:14 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/07 15:56:33 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(char *content)
+t_line	*ft_lstnew(char *content)
 {
-	t_list	*new_node;
+	t_line	*new_node;
 
 	new_node = malloc(sizeof(*new_node));
+	if (!new_node)
+		return (NULL);
 	new_node->content = content;
+	new_node->length = 0;
 	new_node->next = NULL;
 	return (new_node);
 }
 
-void	ft_lstadd_back(t_list **list, t_list *new)
+t_line	*ft_lstlast(t_line *lst)
 {
-	t_list	*temp;
-
-	if (!list || !new)
-		return ;
-	if (!(*list))
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
 	{
-		*list = new;
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	ft_lstadd_back(t_line **lst, t_line *new)
+{
+	t_line	*temp;
+
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
 		return ;
 	}
-	temp = *list;
-	while (temp->next)
-		temp = temp->next;
+	temp = ft_lstlast(*lst);
 	temp->next = new;
 }
 
-t_list	*ft_lstlast(t_list *list)
+void	ft_lstclear(t_line **lst, void (*del)(void *))
 {
-	if (list == NULL)
-		return (NULL);
-	while (list->next)
-		list = list->next;
-	return (list);
-}
+	t_line	*temp_lst;
 
-void	ft_lstclear(t_list **list, void (*del)(void *))
-{
-	if (!list || !del || !(*list))
+	if (!lst || !del)
 		return ;
-	ft_lstclear(&(*list)->next, del);
-	del((*list)->content);
-	free(*list);
-	*list = NULL;
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*i;
-	size_t			j;
-
-	i = s;
-	j = 0;
-	if (n == 0)
-		return ;
-	while (j < n)
+	while (*lst != NULL)
 	{
-		i[j] = 0;
-		j++;
+		temp_lst = *lst;
+		*lst = (*lst)->next;
+		free(temp_lst->content);
+		free(temp_lst);
 	}
+	*lst = NULL;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void			*arr;
+	size_t			alloc_size;
+	size_t			i;
+	unsigned char	*cast_s;
+
+	alloc_size = nmemb * size;
+	if (!alloc_size || alloc_size / nmemb != size)
+		return (NULL);
+	arr = malloc(alloc_size);
+	if (arr == NULL)
+		return (NULL);
+	i = 0;
+	cast_s = arr;
+	while (i < alloc_size)
+	{
+		cast_s[i] = '\0';
+		i++;
+	}
+	return (cast_s);
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/07 15:55:40 by iammai           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 static void	read_line(t_line **cache, int fd);
@@ -134,4 +122,98 @@ static void	refactor_line(t_line **cache)
 	}
 	else
 		free(content);
+}
+
+t_line	*ft_lstnew(char *content)
+{
+	t_line	*new_node;
+
+	new_node = malloc(sizeof(*new_node));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->length = 0;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+t_line	*ft_lstlast(t_line *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	ft_lstadd_back(t_line **lst, t_line *new)
+{
+	t_line	*temp;
+
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	temp = ft_lstlast(*lst);
+	temp->next = new;
+}
+
+void	ft_lstclear(t_line **lst, void (*del)(void *))
+{
+	t_line	*temp_lst;
+
+	if (!lst || !del)
+		return ;
+	while (*lst != NULL)
+	{
+		temp_lst = *lst;
+		*lst = (*lst)->next;
+		free(temp_lst->content);
+		free(temp_lst);
+	}
+	*lst = NULL;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void			*arr;
+	size_t			alloc_size;
+	size_t			i;
+	unsigned char	*cast_s;
+
+	alloc_size = nmemb * size;
+	if (!alloc_size || alloc_size / nmemb != size)
+		return (NULL);
+	arr = malloc(alloc_size);
+	if (arr == NULL)
+		return (NULL);
+	i = 0;
+	cast_s = arr;
+	while (i < alloc_size)
+	{
+		cast_s[i] = '\0';
+		i++;
+	}
+	return (cast_s);
+}
+
+int main()
+{
+	int		fd;
+	char	*line;
+
+	fd = open("big_line_no_nl.txt", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		printf("%s\n", line);
+		free(line);
+	}
 }

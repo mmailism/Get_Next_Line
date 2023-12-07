@@ -1,6 +1,5 @@
 {
-	"C_Cpp.errorSquiggles": "disabled",
-	"workbench.colorCustomizations": {
-		"tab.activeBorderTop": "#FA9E9E"
-	}
+    "workbench.colorCustomizations": {
+        "tab.activeBorderTop": "#FA9E9E"
+    }
 }
