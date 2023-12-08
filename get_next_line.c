@@ -6,131 +6,129 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/07 15:55:40 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/08 14:53:13 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	read_line(t_line **cache, int fd);
-static int	is_new_line(t_line *cache);
-static void	create_line(t_line *cache, char **line);
-static void	refactor_line(t_line **cache);
-
 char	*get_next_line(int fd)
 {
-	static t_line	*cache = NULL;
+	static t_list	*list = NULL;
 	char			*line;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_line(&cache, fd);
-	if (!cache)
+	ft_read_list(&list, fd);
+	if (!list)
 		return (NULL);
-	create_line(cache, &line);
-	refactor_line(&cache);
+	ft_create_list(list, &line);
+	printf("== line : %s ==\n", line);
+	ft_re_list(&list);
 	return (line);
 }
 
-static void	read_line(t_line **cache, int fd)
+void	ft_read_list(t_list **list, int fd)
 {
-	int		output;
-	char	*buffer;
-	t_line	*new_node;
+	t_list	*new_node;
+	char	*buf;
+	int		read_list;
 
-	output = 0;
-	while (!is_new_line(*cache))
+	read_list = 0;
+	printf("\n== fd : %d ==", fd);
+	while (!ft_new_line(*list))
 	{
-		buffer = NULL;
-		new_node = ft_lstnew(buffer);
-		new_node->content = ft_calloc(sizeof(*buffer), (BUFFER_SIZE + 1));
-		output = read(fd, new_node->content, BUFFER_SIZE);
-		if (output == 0 || output == -1)
+		buf = NULL;
+		new_node = ft_lstnew(buf);
+		new_node->content = ft_calloc(sizeof(*buf), (BUFFER_SIZE +1));
+		read_list = read(fd, new_node->content, BUFFER_SIZE);
+		if (read_list == 0 || read_list == -1)
 		{
 			free(new_node->content);
 			free(new_node);
 			return ;
 		}
 		new_node->content[BUFFER_SIZE] = '\0';
-		ft_lstadd_back(cache, new_node);
+		ft_lstadd_back(list, new_node);
 	}
+	printf("\n{read_file : %d}\nbuf : %s\n", read_list, buf);
 }
 
-static int	is_new_line(t_line *cache)
+int	ft_new_line(t_list *list)
 {
-	int		i;
+	int	i;
 
-	cache = ft_lstlast(cache);
-	if (!cache)
+	list = ft_lstlast(list);
+	if (!list)
 		return (0);
 	i = 0;
-	while (cache->content[i] != '\0')
+	while (list->content[i] != '\0')
 	{
-		if (cache->content[i] == '\n')
+		if (list->content[i] == '\n')
 		{
-			cache->length = ++i;
+			list->len = ++i;
 			return (1);
 		}
 		i++;
 	}
-	cache->length = i;
+	list->len = i;
 	return (0);
 }
 
-static void	create_line(t_line *cache, char **line)
+void	ft_create_list(t_list *list, char **line)
 {
-	int		ln_size;
+	int		size_n;
 	int		i;
-	t_line	*temp;
+	t_list	*lst_s;
 
-	temp = cache;
-	ln_size = 0;
-	while (temp)
+	lst_s = list;
+	size_n = 0;
+	while (lst_s)
 	{
-		ln_size = ln_size + temp->length;
-		temp = temp->next;
+		size_n = size_n + lst_s->len;
+		lst_s = lst_s->next;
 	}
-	if (!ln_size)
+	if (!size_n)
 		return ;
-	*line = malloc(sizeof(**line) * (ln_size + 1));
+	*line = malloc(sizeof(**line) * (size_n +1));
 	if (!line)
 		return ;
-	ln_size = 0;
-	while (cache && cache->content)
+	size_n = 0;
+	while (list && list->content)
 	{
 		i = 0;
-		while (cache->content[i] && i < cache->length)
-			(*line)[ln_size++] = cache->content[i++];
-		cache = cache->next;
+		while (list->content[i] && i < list->len)
+			(*line)[size_n++] = list->content[i++];
+		list = list->next;
 	}
-	(*line)[ln_size] = '\0';
+	(*line)[size_n] = '\0';
 }
 
-static void	refactor_line(t_line **cache)
+void	ft_re_list(t_list **list)
 {
-	t_line	*temp;
-	t_line	*new_node;
+	t_list	*lst_s;
+	t_list	*new_node;
 	char	*content;
 	int		i;
-	int		size;
+	int		k;
 
-	size = 0;
-	temp = ft_lstlast(*cache);
-	if (!temp)
+	k = 0;
+	lst_s = ft_lstlast(*list);
+	if (!lst_s)
 		return ;
-	content = temp->content;
-	size = temp->length;
-	temp->content = NULL;
-	ft_lstclear(cache, free);
-	i = 0;
-	if (content[size] != '\0')
+	content = lst_s->content;
+	k = lst_s->len;
+	lst_s->content = NULL;
+	ft_lstclear(list, free);
+	if (content[k] != '\0')
 	{
-		while (content[size] != '\0')
-			content[i++] = content[size++];
+		i = 0;
+		while (content[k] != '\0')
+			content[i++] = content[k++];
 		content[i] = '\0';
 		new_node = ft_lstnew(content);
-		ft_lstadd_back(cache, new_node);
+		ft_lstadd_back(list, new_node);
 	}
 	else
 		free(content);

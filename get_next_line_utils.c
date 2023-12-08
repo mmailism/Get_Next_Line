@@ -6,76 +6,76 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/07 15:56:33 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/08 14:29:55 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_line	*ft_lstnew(char *content)
+t_list	*ft_lstnew(char *content)
 {
-	t_line	*new_node;
+	t_list	*new_node;
 
 	new_node = malloc(sizeof(*new_node));
 	if (!new_node)
 		return (NULL);
 	new_node->content = content;
-	new_node->length = 0;
+	new_node->len = 0;
 	new_node->next = NULL;
 	return (new_node);
 }
 
-t_line	*ft_lstlast(t_line *lst)
+void	ft_lstadd_back(t_list **list, t_list *new)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
-}
+	t_list	*temp;
 
-void	ft_lstadd_back(t_line **lst, t_line *new)
-{
-	t_line	*temp;
-
-	if (!new)
+	if (!list || !new)
 		return ;
-	if (!*lst)
+	if (!(*list))
 	{
-		*lst = new;
+		*list = new;
 		return ;
 	}
-	temp = ft_lstlast(*lst);
+	temp = *list;
+	while (temp->next)
+		temp = temp->next;
 	temp->next = new;
 }
 
-void	ft_lstclear(t_line **lst, void (*del)(void *))
+t_list	*ft_lstlast(t_list *list)
 {
-	t_line	*temp_lst;
+	if (list == NULL)
+		return (NULL);
+	while (list->next != NULL)
+		list = list->next;
+	return (list);
+}
 
-	if (!lst || !del)
+void	ft_lstclear(t_list **list, void (*del)(void *))
+{
+	t_list	*temp_lst;
+
+	if (!list || !del)
 		return ;
-	while (*lst != NULL)
+	while (*list != NULL)
 	{
-		temp_lst = *lst;
-		*lst = (*lst)->next;
+		temp_lst = *list;
+		*list = (*list)->next;
 		free(temp_lst->content);
 		free(temp_lst);
 	}
-	*lst = NULL;
+	*list = NULL;
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t count, size_t n)
 {
 	void			*arr;
 	size_t			alloc_size;
 	size_t			i;
 	unsigned char	*cast_s;
 
-	alloc_size = nmemb * size;
-	if (!alloc_size || alloc_size / nmemb != size)
+	alloc_size = count * n;
+	if (!alloc_size || alloc_size / count != n)
 		return (NULL);
 	arr = malloc(alloc_size);
 	if (arr == NULL)
