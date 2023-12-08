@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/07 16:40:55 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/08 14:19:55 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,19 @@ typedef struct s_list
 {
 	char			*content;
 	int				len;
-	struct s_line	*next;
+	struct s_list	*next;
 }					t_list;
 
 char	*get_next_line(int fd);
-
-t_line	*ft_lstnew(char *content);
-
-t_line	*ft_lstlast(t_line *lst);
-
-void	ft_lstadd_back(t_line **lst, t_line *new);
-
-void	ft_lstclear(t_line **lst, void (*del)(void *));
-
-void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_read_list(t_list **list, int fd);
+int		ft_new_line(t_list *list);
+void	ft_create_list(t_list *list, char **line);
+void	ft_re_list(t_list **list);
+t_list	*ft_lstnew(char *content);
+void	ft_lstadd_back(t_list **list, t_list *new);
+t_list	*ft_lstlast(t_list *list);
+void	ft_lstclear(t_list **list, void (*del)(void *));
+void	*ft_calloc(size_t count, size_t n);
 
 #endif
 

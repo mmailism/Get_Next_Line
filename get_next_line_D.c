@@ -62,7 +62,7 @@ int	ft_new_line(t_list *list)
 	return (0);
 }
 
-void ft_create_list(t_list *list, char **line)
+void	ft_create_list(t_list *list, char **line)
 {
 	int		size_n;
 	int		i;
@@ -89,4 +89,126 @@ void ft_create_list(t_list *list, char **line)
 		list = list->next;
 	}
 	(*line)[size_n] = '\0';
+}
+
+void	ft_re_list(t_list **list)
+{
+	t_list	*lst_s;
+	t_list	*new_node;
+	char	*content;
+	int		i;
+	int		k;
+
+	k = 0;
+	lst_s = ft_lstlast(*list);
+	if (!lst_s)
+		return ;
+	content = lst_s->content;
+	k = lst_s->len;
+	lst_s->content = NULL;
+	ft_lstclear(list, free);
+	if (content[k] != '\0')
+	{
+		i = 0;
+		while (content[k] != '\0')
+			content[i++] = content[k++];
+		content[i] = '\0';
+		new_node = ft_lstnew(content);
+		ft_lstadd_back(list, new_node);
+	}
+	else
+		free(content);
+}
+
+t_list	*ft_lstnew(char *content)
+{
+	t_list	*new_node;
+
+	new_node = malloc(sizeof(*new_node));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->len = 0;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+void	ft_lstadd_back(t_list **list, t_list *new)
+{
+	t_list	*temp;
+
+	if (!list || !new)
+		return ;
+	if (!(*list))
+	{
+		*list = new;
+		return ;
+	}
+	temp = *list;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = new;
+}
+
+t_list	*ft_lstlast(t_list *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next != NULL)
+		list = list->next;
+	return (list);
+}
+
+void	ft_lstclear(t_list **list, void (*del)(void *))
+{
+	t_list	*temp_lst;
+
+	if (!list || !del)
+		return ;
+	while (*list != NULL)
+	{
+		temp_lst = *list;
+		*list = (*list)->next;
+		free(temp_lst->content);
+		free(temp_lst);
+	}
+	*list = NULL;
+}
+
+void	*ft_calloc(size_t count, size_t n)
+{
+	void			*arr;
+	size_t			alloc_size;
+	size_t			i;
+	unsigned char	*cast_s;
+
+	alloc_size = count * n;
+	if (!alloc_size || alloc_size / count != n)
+		return (NULL);
+	arr = malloc(alloc_size);
+	if (arr == NULL)
+		return (NULL);
+	i = 0;
+	cast_s = arr;
+	while (i < alloc_size)
+	{
+		cast_s[i] = '\0';
+		i++;
+	}
+	return (cast_s);
+}
+
+int main()
+{
+	int fd;
+	
+	fd = open("43_no_nl.txt", O_RDONLY);
+
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("============================\n");
+	close (fd);
+	return(0);
 }
