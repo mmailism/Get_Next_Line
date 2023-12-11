@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/08 14:53:13 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/11 20:35:11 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*get_next_line(int fd)
 	if (!list)
 		return (NULL);
 	ft_create_list(list, &line);
-	printf("== line : %s ==\n", line);
 	ft_re_list(&list);
 	return (line);
 }
@@ -36,12 +35,11 @@ void	ft_read_list(t_list **list, int fd)
 	int		read_list;
 
 	read_list = 0;
-	printf("\n== fd : %d ==", fd);
 	while (!ft_new_line(*list))
 	{
 		buf = NULL;
 		new_node = ft_lstnew(buf);
-		new_node->content = ft_calloc(sizeof(*buf), (BUFFER_SIZE +1));
+		new_node->content = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 		read_list = read(fd, new_node->content, BUFFER_SIZE);
 		if (read_list == 0 || read_list == -1)
 		{
@@ -52,7 +50,6 @@ void	ft_read_list(t_list **list, int fd)
 		new_node->content[BUFFER_SIZE] = '\0';
 		ft_lstadd_back(list, new_node);
 	}
-	printf("\n{read_file : %d}\nbuf : %s\n", read_list, buf);
 }
 
 int	ft_new_line(t_list *list)
