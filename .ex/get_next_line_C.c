@@ -1,4 +1,3 @@
-
 #include "get_next_line.h"
 
 size_t	find_line_ending(char *str, size_t i)
