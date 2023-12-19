@@ -173,3 +173,18 @@ char	*ft_strjoin(char *buffer, char *content)
 	free(buffer);
 	return (result);
 }
+
+int main()
+{
+	int fd;
+	
+	fd = open("43_with_nl.txt", O_RDONLY);
+
+	printf("-- out 1 : %s --\n", get_next_line(fd));
+	printf("-- out 2 : %s --\n", get_next_line(fd));
+	printf("-- out 3 : %s --\n", get_next_line(fd));
+	printf("-- out 4 : %s --\n", get_next_line(fd));
+	printf("============================\n");
+	close (fd);
+	return(0);
+}

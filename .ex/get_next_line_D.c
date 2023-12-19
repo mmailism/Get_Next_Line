@@ -32,7 +32,7 @@ void	ft_read_list(t_list **list, int fd)
 		read_list = read(fd, new_node->content, BUFFER_SIZE);
 		if (read_list == 0 || read_list == -1)
 		{
-			free(new_node->content);
+			freee(new_node->content);
 			free(new_node);
 			return ;
 		}
@@ -202,7 +202,7 @@ int main()
 {
 	int fd;
 	
-	fd = open("43_no_nl.txt", O_RDONLY);
+	fd = open("43_with_nl.txt", O_RDONLY);
 
 	printf("-- out 1 : %s --\n", get_next_line(fd));
 	printf("-- out 2 : %s --\n", get_next_line(fd));
