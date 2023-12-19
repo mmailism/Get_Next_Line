@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/19 16:37:54 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/19 17:24:41 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ void	ft_read_list(t_list **list, int fd)
 	char	*buf;
 	int		read_list;
 
+	if (*list == NULL)
+		return ;
 	read_list = 0;
 	while (!ft_new_line(*list))
 	{
 		buf = NULL;
 		new_node = ft_lstnew(buf);
+		if (!new_node)
+			return ;
 		new_node->content = ft_calloc(sizeof(*buf), (BUFFER_SIZE +1));
 		read_list = read(fd, new_node->content, BUFFER_SIZE);
 		if (read_list == 0 || read_list == -1)
@@ -83,6 +87,8 @@ void	ft_create_list(t_list *list, char **line)
 	int		i;
 	t_list	*lst_s;
 
+	if (!list)
+		return ;
 	lst_s = list;
 	size_n = 0;
 	while (lst_s)
@@ -90,11 +96,7 @@ void	ft_create_list(t_list *list, char **line)
 		size_n = size_n + lst_s->len;
 		lst_s = lst_s->next;
 	}
-	if (!size_n)
-		return ;
 	*line = malloc(sizeof(**line) * (size_n +1));
-	if (!line)
-		return ;
 	size_n = 0;
 	while (list && list->content)
 	{
@@ -140,7 +142,7 @@ void	ft_re_list(t_list **list)
 // 	int fd;
 // 	char	*i;
 
-// 	fd = open("43_with_nl.txt", O_RDONLY);
+// 	fd = open("1char.txt", O_RDONLY);
 // 	i = get_next_line(fd);
 
 // 	printf("-- out 1 : %s --\n", i);
