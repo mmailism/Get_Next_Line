@@ -6,40 +6,44 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/19 17:09:46 by iammai           ###   ########.fr       */
+/*   Updated: 2023/12/22 19:32:17 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*ft_lstnew(char *content)
+void	free_stash(t_list *line)
 {
-	t_list	*new_node;
+	t_list	*current;
+	t_list	*next;
 
-	new_node = malloc(sizeof(*new_node));
-	if (!new_node)
-		return (NULL);
-	new_node->content = content;
-	new_node->len = 0;
-	new_node->next = NULL;
-	return (new_node);
+	current = line;
+	while (current)
+	{
+		free(current->content);
+		next = current->next;
+		free(current);
+		current = next;
+	}
 }
 
-void	ft_lstadd_back(t_list **list, t_list *new)
+char	*trim_last_list_element_helper(t_list *last, int i)
 {
-	t_list	*temp;
+	int		j;
+	int		len;
+	char	*trimmed_content;
 
-	if (!list || !new)
-		return ;
-	if (!(*list))
-	{
-		*list = new;
-		return ;
-	}
-	temp = *list;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
+	len = 0;
+	while (last->content[len])
+		len++;
+	trimmed_content = malloc(sizeof(char) * (len - i + 1));
+	if (trimmed_content == NULL)
+		return (NULL);
+	j = 0;
+	while (last->content[i])
+		trimmed_content[j++] = last->content[i++];
+	trimmed_content[j] = '\0';
+	return (trimmed_content);
 }
 
 t_list	*ft_lstlast(t_list *list)
@@ -51,41 +55,53 @@ t_list	*ft_lstlast(t_list *list)
 	return (list);
 }
 
-void	ft_lstclear(t_list **list, void (*del)(void *))
+void	add_join_next(t_list *line, char *buf, int read_list)
 {
-	t_list	*temp_lst;
+	t_list	*new_node;
+	t_list	*last;
+	int		i;
 
-	if (!list || !del)
+	new_node = malloc(sizeof(t_list));
+	new_node->content = malloc(sizeof(char) * (read_list + 1));
+	if (!new_node->content)
 		return ;
-	while (*list != NULL)
-	{
-		temp_lst = *list;
-		*list = (*list)->next;
-		free(temp_lst->content);
-		free(temp_lst);
-	}
-	*list = NULL;
-}
-
-void	*ft_calloc(size_t count, size_t n)
-{
-	void			*arr;
-	size_t			alloc_size;
-	size_t			i;
-	unsigned char	*cast_s;
-
-	alloc_size = count * n;
-	if (!alloc_size || alloc_size / count != n)
-		return (NULL);
-	arr = malloc(alloc_size);
-	if (arr == NULL)
-		return (NULL);
+	new_node->next = NULL;
 	i = 0;
-	cast_s = arr;
-	while (i < alloc_size)
+	while (buf[i] && i < read_list)
 	{
-		cast_s[i] = '\0';
+		new_node->content[i] = buf[i];
 		i++;
 	}
-	return (cast_s);
+	new_node->content[i] = '\0';
+	if (!line)
+		line = new_node;
+	else
+	{
+		last = ft_lstlast(line);
+		last->next = new_node;
+	}
+}
+
+void	generate_line(t_list *line, char *res)
+{
+	int	i;
+	int	len;
+	
+	len = 0;
+	while (line)
+	{
+		i = 0;
+		while (line->content[i])
+		{
+			if (line->content[i] == '\n')
+			{
+				len++;
+				break ;
+			}
+			len++;
+			i++;
+		}
+		line = line->next;
+	}
+	res = malloc(sizeof(char) * (len + 1));
 }
