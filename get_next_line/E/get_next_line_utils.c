@@ -6,7 +6,7 @@
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 16:46:37 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:51:01 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_lstadd_back(t_list **list, t_list *new)
 
 t_list	*ft_lstlast(t_list *list)
 {
-	if (list == NULL)
+	if (!list )
 		return (NULL);
 	while (list->next != NULL)
 		list = list->next;

@@ -6,7 +6,7 @@
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 16:46:17 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:50:39 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ char	*get_next_line(int fd)
 	char			*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		if (fd > 0 && list)
+			ft_lstclear(&list, free);
 		return (NULL);
-	printf("==============\n");
+	}
 	ft_read_list(&list, fd);
 	if (!list)
 		return (NULL);
@@ -35,19 +38,22 @@ void	ft_read_list(t_list **list, int fd)
 	char	*buf;
 	int		read_list;
 
-	read_list = 0;
+	read_list = 1;
 	while (!ft_new_line(*list))
 	{
+		
 		buf = NULL;
 		new_node = ft_lstnew(buf);
+		if (!new_node)
+			return ;
 		new_node->content = ft_calloc(sizeof(*buf), (BUFFER_SIZE +1));
 		read_list = read(fd, new_node->content, BUFFER_SIZE);
-		if (read_list == 0 || read_list == -1)
+		if (read_list == 0 || read_list == -1) //!fix
 		{
-			freee(new_node->content);
+			free(new_node->content);
 			free(new_node);
 			return ;
-		}
+		}	
 		new_node->content[BUFFER_SIZE] = '\0';
 		ft_lstadd_back(list, new_node);
 	}
@@ -56,7 +62,7 @@ void	ft_read_list(t_list **list, int fd)
 int	ft_new_line(t_list *list)
 {
 	int	i;
-	
+
 	list = ft_lstlast(list);
 	if (!list)
 		return (0);
@@ -86,12 +92,10 @@ void	ft_create_list(t_list *list, char **line)
 	{
 		size_n = size_n + lst_s->len;
 		lst_s = lst_s->next;
+		if (!lst_s) 
+			return ;
 	}
-	if (!size_n)
-		return ;
 	*line = malloc(sizeof(**line) * (size_n +1));
-	if (!line)
-		return ;
 	size_n = 0;
 	while (list && list->content)
 	{
