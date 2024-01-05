@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/12/22 19:44:44 by iammai           ###   ########.fr       */
+/*   Updated: 2024/01/05 14:45:37 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*get_next_line(int fd)
 	char			*res;
 	char			*buf;
 
+	res = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
@@ -28,13 +29,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ft_create(line, res);
 	ft_re_list(line);
-	// if (!line)
-	// {
-	// 	free_stash(line);
-	// 	line = NULL;
-	// 	free(res);
-	// 	return (NULL);
-	// }
 	return (res);
 }
 
@@ -133,19 +127,19 @@ int	found_newline(t_list *line)
 	return (0);
 }
 
-int main()
-{
-	int fd;
-	char	*i;
+// int main()
+// {
+// 	int fd;
+// 	char	*i;
 
-	fd = open("1char.txt", O_RDONLY);
-	i = get_next_line(fd);
+// 	fd = open("1char.txt", O_RDONLY);
+// 	i = get_next_line(fd);
 
-	printf("-- out 1 : %s --\n", i);
-	free(i);
-	i = get_next_line(fd);
-	printf("-- out 2 : %s --\n", i);
-	free(i);
-	close (fd);
-	return(0);
-}
+// 	printf("-- out 1 : %s --\n", i);
+// 	free(i);
+// 	i = get_next_line(fd);
+// 	printf("-- out 2 : %s --\n", i);
+// 	free(i);
+// 	close (fd);
+// 	return(0);
+// }
