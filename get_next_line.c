@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 14:45:37 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/06 14:48:21 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	found_newline(t_list *line)
 {
 	int	i;
 
+	i = 0;
 	if (!line)
 		return (0);
-	i = 0;
 	while (line->next != 0)
 		line = line->next;
 	while (line->content[i])

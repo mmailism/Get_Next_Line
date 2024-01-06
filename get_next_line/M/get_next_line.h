@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/06 14:50:53 by iammai           ###   ########.fr       */
+/*   Updated: 2024/01/06 18:03:19 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 4
 # endif
 
 # include <unistd.h>
@@ -27,18 +27,20 @@
 typedef struct s_list
 {
 	char			*content;
+	int				*len;
 	struct s_list	*next;
 }					t_list;
 
 char	*get_next_line(int fd);
-t_list	*ft_re_list(t_list *line);
-t_list	*ft_create(t_list *line, char *res);
-t_list	*ft_read(t_list *line, int fd, char *buf);
-int		found_newline(t_list *line);
-void	free_stash(t_list *line);
-char	*trim_last_list_element_helper(t_list *last, int i);
-t_list	*ft_lstlast(t_list *list);
-void	add_join_next(t_list *line, char *buf, int read_list);
-void	generate_line(t_list *line, char *res);
+char	*create_list(char *read_buf);
+char	*get_list(char *read_buf);
+char	*ft_strjoin(char *buffer, char *content);
+char	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *str);
+void	*ft_memmove(void *dst, const void *src, size_t n);
+char	*free_and_null(char *buff1, char *buff2);
+void	*ft_memcpy(void *to, const void *from, size_t n);
+char	*ft_strchr(const char *s, int c);
+size_t	find_lastline(char *read_buf, size_t i);
 
 #endif
