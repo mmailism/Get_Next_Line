@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/06 14:48:21 by iammai           ###   ########.fr       */
+/*   Updated: 2024/01/08 18:24:35 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,132 +14,130 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*line = NULL;
-	char			*res;
-	char			*buf;
+	static char	*list = NULL;
+	char		*buffer;
+	char		*line;
 
-	res = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buf)
+	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
 		return (NULL);
-	ft_read(line, fd, buf);
+	line = read_line(fd, buffer, list);
+	free(buffer);
 	if (!line)
-		return (NULL);
-	ft_create(line, res);
-	ft_re_list(line);
-	return (res);
-}
-
-t_list	*ft_re_list(t_list *line)
-{
-	t_list	*last;
-	t_list	*clear_node;
-	int		i;
-
-	clear_node = malloc(sizeof(t_list));
-	if (line == NULL || clear_node == NULL)
 	{
-		line = clear_node;
+		free(list);
 		return (NULL);
 	}
-	clear_node->next = NULL;
-	last = ft_lstlast(line);
-	i = 0;
-	while (last->content[i] && last->content[i] != '\n')
-		i++;
-	if (last->content[i] == '\n')
-		i++;
-	clear_node->content = trim_last_list_element_helper(last, i);
-	if (clear_node->content == NULL)
-		return (NULL);
-	free_stash(line);
-	line = clear_node;
-	return (clear_node);
-}
-
-t_list	*ft_create(t_list *line, char *res)
-{
-	int	i;
-	int	j;
-
-	if (!line)
-		return (NULL);
-	generate_line(line, res);
-	if (!res)
-		return (NULL);
-	j = 0;
-	while (line)
-	{
-		i = 0;
-		while (line->content[i])
-		{
-			if (line->content[i] == '\n')
-			{
-				res[j++] = line->content[i++];
-				break ;
-			}
-			res[j++] = line->content[i++];
-		}
-		line = line->next;
-	}
-	res[j] = '\0';
+	list = total_line(line);
 	return (line);
 }
 
-t_list	*ft_read(t_list *line, int fd, char *buf)
+char	*read_line(int fd, char *buffer, char *list)
 {
-	int		read_list;
-	
-	read_list = 1;
-	while (!found_newline(line) && read_list != 0)
+	int		check;
+	char	*tmp;
+
+	check = 1;
+	while (!ft_strchr(buffer, '\n'))
 	{
-		if (!buf)
-			return (NULL);
-		read_list = read(fd, buf, BUFFER_SIZE);
-		if (line == NULL || read_list == 0 || read_list == -1)
+		check = read(fd, buffer, BUFFER_SIZE);
+		if (check == -1)
 		{
-			free(buf);
-			return (NULL);
+			free(buffer);
+			return (0);
 		}
-		buf[read_list] = '\0';
-		add_join_next(line, buf, read_list);
+		else if (check == 0)
+			break ;
+		buffer[check] = '\0';
+		if (!list)
+			list = ft_strdup("");
+		tmp = list;
+		list = (ft_strjoin(tmp, buffer));
+		if (!list)
+			return (NULL);
+		free(tmp);
 	}
-	free(buf);
+	return (list);
 }
 
-int	found_newline(t_list *line)
+void	*total_line(char *list)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
-	if (!line)
-		return (0);
-	while (line->next != 0)
-		line = line->next;
-	while (line->content[i])
-	{
-		if (line->content[i] == '\n')
-			return (1);
+	while (list[i] != '\0' && list[i] != '\n')
 		i++;
+	if (list[i] == '\0')
+		return (NULL);
+	tmp = ft_substr(list, i + 1, ft_strlen(list) - 1);
+	if (!tmp)
+		return (NULL);
+	if (tmp[0] == '\0')
+	{
+		free(tmp);
+		tmp = NULL;
+		return (NULL);
 	}
-	return (0);
+	list[i + 1] = '\0';
+	return (tmp);
 }
 
-// int main()
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (*str != '\0')
+	{
+		str++;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	if (c == '\0')
+	{
+		while (*s != '\0')
+			s++;
+		return ((char *)s);
+	}
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
+}
+
+// #include <fcntl.h>
+// #include <stdio.h>
+
+// int	main(void)
 // {
-// 	int fd;
-// 	char	*i;
+// 	int	fd;
+// 	char	*line;
 
-// 	fd = open("1char.txt", O_RDONLY);
-// 	i = get_next_line(fd);
+// 	fd = open("read_error.txt", O_RDONLY);
 
-// 	printf("-- out 1 : %s --\n", i);
-// 	free(i);
-// 	i = get_next_line(fd);
-// 	printf("-- out 2 : %s --\n", i);
-// 	free(i);
-// 	close (fd);
-// 	return(0);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	fd = open("43_with_nl.txt", O_RDONLY);
+
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return 0;
 // }

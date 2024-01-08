@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 16:55:43 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:13:47 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ void	prepare_stash_from_file(int fd, t_list **stash)
 
 	num_bytes = 1;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while (!found_new_line(*stash) && num_bytes != 0)
+	while (!found_new_line(*stash) && num_bytes != 0) //!must have
 	{
-		if (buffer == NULL)
-			return ;
+		// if (buffer == NULL)
+			// return ;
 		num_bytes = read(fd, buffer, BUFFER_SIZE);
-		if ((*stash == NULL && num_bytes == 0) || num_bytes == -1)
+		if ((*stash == NULL && num_bytes == 0) || num_bytes == -1)//!must have *stash
 		{
 			free(buffer);
-			if (num_bytes == -1)
-				free_stash(*stash);
-			*stash = NULL;
+			if (num_bytes == -1) //!read error03
+				free_stash(*stash); //!read error03
+			*stash = NULL; //!read error09leaks
 			return ;
 		}
 		buffer[num_bytes] = '\0';
 		append_buffer_to_stash(stash, buffer, num_bytes);
 	}
-	free(buffer);
+	free(buffer); //!must have
 }
 
 void	append_buffer_to_stash(t_list **stash, char *buffer, int num_bytes)
@@ -46,9 +46,9 @@ void	append_buffer_to_stash(t_list **stash, char *buffer, int num_bytes)
 
 	new_node = malloc(sizeof(t_list));
 	new_node->content = malloc(sizeof(char) * (num_bytes + 1));
-	if (new_node == NULL
-		|| new_node->content == NULL)
-		return ;
+	// if (new_node == NULL
+		// || new_node->content == NULL)
+		// return ;
 	new_node->next = NULL;
 	i = 0;
 	while (buffer[i] && i < num_bytes)
@@ -71,11 +71,11 @@ void	read_line_from_stash(t_list *stash, char **line)
 	int	i;
 	int	j;
 
-	if (stash == NULL)
-		return ;
+	// if (stash == NULL)
+	// 	return ;
 	generate_line(line, stash);
-	if (*line == NULL)
-		return ;
+	// if (*line == NULL)
+		// return 
 	j = 0;
 	while (stash)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 15:46:51 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:32:03 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_lstadd_back(t_list **list, char *buf) // !next fix
 	if (new_node == NULL)
 		return ;
 	new_node->next = NULL;
-	new_node->content = malloc(sizeof(char) * (buf + 1));
+	new_node->content = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (new_node->content == NULL)
 		return ;
 	i = 0;
@@ -75,7 +75,7 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-int	ft_find_newline(t_list *list)c
+int	ft_find_newline(t_list *list)
 {
 	int		i;
 	t_list	*new_line;

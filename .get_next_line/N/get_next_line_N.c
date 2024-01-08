@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/06 18:13:19 by iammai           ###   ########.fr       */
+/*   Updated: 2024/01/08 16:32:23 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,26 +181,21 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-// #include <fcntl.h>
-// #include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-// int	main(void)
-// {
-// 	int	fd;
-// 	char	*line;
+int	main(void)
+{
+	int	fd;
+	char	*line;
 
-// 	fd = open("test_get_next_line.txt", O_RDONLY);
+	fd = open("43_with_nl.txt", O_RDONLY);
 
-// 	if (fd == -1)
-// 	{
-// 		perror("Error opening file");
-// 		return (1);
-// 	}
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s\n", line);
-// 		free(line);
-// 	}
-// 	close(fd);
-// 	return 0;
-// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	return 0;
+}

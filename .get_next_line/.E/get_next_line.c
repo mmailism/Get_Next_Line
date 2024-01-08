@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/05 16:50:39 by kpueankl         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:36:35 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ void	ft_re_list(t_list **list)
 
 	k = 0;
 	lst_s = ft_lstlast(*list);
-	if (!lst_s)
-		return ;
+	// if (!lst_s)
+	// 	return ;
 	content = lst_s->content;
 	k = lst_s->len;
 	lst_s->content = NULL;
