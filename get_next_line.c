@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 16:07:31 by iammai           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:16:43 by maramick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static void	set_zero(char *ptr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i != size)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}
 
 char	*get_next_line(int fd)
 {
@@ -18,16 +30,27 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
+	// static int	error = 0;
+	// error++;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		if (list)
+			free(list);
+		list = NULL;
 		return (NULL);
-	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	}
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
+	set_zero(buffer, BUFFER_SIZE + 1);
 	line = read_line(fd, buffer, list);
 	free(buffer);
-	if (!line)
+	if (!line /*|| error == 4*/)
 	{
-		free(list);
+		if (list)
+			free(list);
+		list = NULL;
 		return (NULL);
 	}
 	list = total_line(line);
@@ -36,21 +59,22 @@ char	*get_next_line(int fd)
 
 char	*read_line(int fd, char *buffer, char *list)
 {
-	int		check;
+	//int		check;
+	int		rd;
 	char	*tmp;
 
-	check = 1;
+	rd = 1;
 	while (!ft_strchr(buffer, '\n'))
 	{
-		check = read(fd, buffer, BUFFER_SIZE);
-		if (check == -1)
+		rd = read(fd, buffer, BUFFER_SIZE);
+		if (rd == -1)
 		{
 			free(buffer);
 			return (0);
 		}
-		else if (check == 0)
+		else if (rd == 0)
 			break ;
-		buffer[check] = '\0';
+		buffer[rd] = 0;
 		if (!list)
 			list = ft_strdup("");
 		tmp = list;
@@ -98,6 +122,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+/*Buffer Overflow becuase didn't check *s*/
 char	*ft_strchr(const char *s, int c)
 {
 	if (c == '\0')
