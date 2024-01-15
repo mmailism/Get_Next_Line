@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/15 18:49:17 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/15 21:58:59 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*read_line(int fd, char *buffer, char *list)
 	// if (!buffer)
 		// return (NULL);
 	rd = 1;
-	while (!found_newline(list))
+	while (1)
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
@@ -156,29 +156,29 @@ int	found_newline(char *list)
 	return (0);
 }
 
-// #include <fcntl.h>
-// #include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-// int	main(void)
-// {
-// 	int	fd;
-// 	char	*line;
+int	main(void)
+{
+	int	fd;
+	char	*line;
 
-// 	fd = open("read_error.txt", O_RDONLY);
+	fd = open("read_error.txt", O_RDONLY);
 
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s\n", line);
-// 		free(line);
-// 	}
-// 	close(fd);
-// 	fd = open("43_with_nl.txt", O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	fd = open("43_with_nl.txt", O_RDONLY);
 
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s\n", line);
-// 		free(line);
-// 	}
-// 	close(fd);
-// 	return 0;
-// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	return 0;
+}

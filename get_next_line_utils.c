@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/15 18:04:49 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/15 21:53:09 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	temp = count_list(s1, s2);
 	if (!temp)
 		return (free(s1), NULL);
 	while (s1[j])
@@ -32,6 +32,33 @@ char	*ft_strjoin(char *s1, char *s2)
 		temp[i++] = s2[j++];
 	temp[i] = '\0';
 	return (temp);
+}
+
+char	*count_list(char *list, char *buffer)
+{
+	size_t	i;
+	size_t	cnt_list;
+	size_t	cnt_buffer;
+	char	*tmp;
+	i = 0;
+	if (list)
+	{
+		if (buffer[0] == '\0')
+			return (NULL);
+		while (buffer[i] != '\0')
+		{
+			if (buffer[i] == '\n')
+				return (NULL);
+			i++;
+		}
+		return (buffer);
+	}
+	cnt_list = ft_strlen(list);
+	cnt_buffer = ft_strlen(buffer);
+	tmp = (char *)malloc(cnt_list + cnt_buffer + 1);
+	if (!tmp)
+		return (free(tmp), NULL);
+	return (tmp);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

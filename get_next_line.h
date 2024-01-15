@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/15 17:17:02 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/15 21:54:02 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 int		found_newline(char *list);
+char	*count_list(char *list, char *buffer);
 
 #endif
