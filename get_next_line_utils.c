@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 17:17:01 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:04:49 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	temp = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!temp)
-	{
-		free(s1);
-		return (NULL);
-	}
+		return (free(s1), NULL);
 	while (s1[j])
 		temp[i++] = s1[j++];
 	j = 0;
@@ -79,25 +76,3 @@ char	*ft_strdup(const char *s)
 	dup[i] = '\0';
 	return (dup);
 }
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*alt;
-// 	char	n;
-// 	int		i;
-
-// 	if (!s1)
-// 		return (NULL);
-// 	n = ft_strlen(s1) + 1;
-// 	alt = (char *)malloc(sizeof(char) * n);
-// 	if (!alt)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		alt[i] = s1[i];
-// 		i++;
-// 	}
-// 	alt[i] = 0;
-// 	return (alt);
-// }

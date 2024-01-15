@@ -1,0 +1,1725 @@
+Error in test 1: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 6 bytes
+     in _add_malloc malloc_mock.c:29:10
+     in malloc malloc_mock.c:75:10
+  -> in ft_strjoin get_next_line_utils.c:25:7
+     in read_line get_next_line.c:72:8
+     in get_next_line get_next_line.c:44:7
+     in test_gnl_func file_utils.c:40:8
+     in main tester.c:135:2
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 2: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 5 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c268 main + 8740
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 3: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 4 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c2b4 main + 8816
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 4: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 3 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c300 main + 8892
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 5th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459c45c main + 9240
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a8001d0 - 5 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459c45c main + 9240
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 7th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459c45c main + 9240
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a800010 - 4 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459c45c main + 9240
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 9th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459c45c main + 9240
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a800d50 - 3 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459c45c main + 9240
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 11th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459c45c main + 9240
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a800a90 - 2 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459c45c main + 9240
+7   dyld                                0x000000018d1890e0 start + 2360
+
+=================================================================
+==6253==ERROR: AddressSanitizer: attempting double-free on 0x00010a800df0 in thread T0:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a71f4 in get_next_line get_next_line.c:47
+    #3 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #4 0x10459cd48 in main tester.c:145
+    #5 0x18d1890dc  (<unknown module>)
+
+0x00010a800df0 is located 0 bytes inside of 10-byte region [0x00010a800df0,0x00010a800dfa)
+freed by thread T0 here:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a7bf0 in ft_strjoin get_next_line_utils.c:27
+    #3 0x1045a7454 in read_line get_next_line.c:72
+    #4 0x1045a71c8 in get_next_line get_next_line.c:44
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459cd48 in main tester.c:145
+    #7 0x18d1890dc  (<unknown module>)
+
+previously allocated by thread T0 here:
+    #0 0x1083ff244 in wrap_malloc+0x94 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53244)
+    #1 0x10459fad4 in malloc malloc_mock.c:65
+    #2 0x1045a7fd4 in ft_substr get_next_line_utils.c:47
+    #3 0x1045a76a0 in total_line get_next_line.c:90
+    #4 0x1045a720c in get_next_line get_next_line.c:48
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459cd48 in main tester.c:145
+    #7 0x18d1890dc  (<unknown module>)
+
+SUMMARY: AddressSanitizer: double-free (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380) in wrap_free+0x98
+##==##==##&&##==##==##./test2.out
+Error in test 1: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 11 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c944 main + 10496
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 2: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 50 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c990 main + 10572
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x2\n"
+Error in test 3: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 47 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459c9dc main + 10648
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x3\n"
+Error in test 4: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 54 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459ca28 main + 10724
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 5: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 93 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459ca74 main + 10800
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x5\n"
+Error in test 6: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 92 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cac0 main + 10876
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 7: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 91 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cac0 main + 10876
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 8: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 90 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cb0c main + 10952
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x8\n"
+Error in test 9: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 89 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cb58 main + 11028
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 10: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 46 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cba4 main + 11104
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 11: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 45 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459cbf0 main + 11180
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 5th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459cd4c main + 11528
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a800e90 - 10 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459cd4c main + 11528
+7   dyld                                0x000000018d1890e0 start + 2360
+
+You are trying to free a pointer that was already freed
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x000000010459cd4c main + 11528
+7   dyld                                0x000000018d1890e0 start + 2360
+: Memory problems!
+0   test2.out                           0x00000001045a2c74 show_signal_msg + 556
+1   test2.out                           0x00000001045a2d6c sigabort + 40
+2   libsystem_platform.dylib            0x000000018d533a24 _sigtramp + 56
+3   libsystem_pthread.dylib             0x000000018d504cc0 pthread_kill + 288
+4   libsystem_c.dylib                   0x000000018d414a40 abort + 180
+5   libclang_rt.asan_osx_dynamic.dylib  0x0000000108423788 _ZN11__sanitizer6AtexitEPFvvE + 0
+6   libclang_rt.asan_osx_dynamic.dylib  0x0000000108422e78 _ZN11__sanitizer22SetCheckUnwindCallbackEPFvvE + 0
+7   libclang_rt.asan_osx_dynamic.dylib  0x0000000108407020 _ZN6__asan16ErrorDescription5PrintEv + 0
+8   libclang_rt.asan_osx_dynamic.dylib  0x00000001084039d0 _ZN6__asan16ReportDoubleFreeEmPN11__sanitizer18BufferedStackTraceE + 428
+9   libclang_rt.asan_osx_dynamic.dylib  0x00000001083ff3ec wrap_free + 260
+10  test2.out                           0x00000001045a0130 free + 56
+11  test2.out                           0x00000001045a71f8 get_next_line + 256
+12  test2.out                           0x00000001045a6f20 null_check_gnl + 624
+13  test2.out                           0x000000010459cd4c main + 11528
+14  dyld                                0x000000018d1890e0 start + 2360
+
+=================================================================
+==6255==ERROR: AddressSanitizer: attempting double-free on 0x00010a701930 in thread T0:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a71f4 in get_next_line get_next_line.c:47
+    #3 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #4 0x10459d424 in main tester.c:162
+    #5 0x18d1890dc  (<unknown module>)
+
+0x00010a701930 is located 0 bytes inside of 20-byte region [0x00010a701930,0x00010a701944)
+freed by thread T0 here:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a7bf0 in ft_strjoin get_next_line_utils.c:27
+    #3 0x1045a7454 in read_line get_next_line.c:72
+    #4 0x1045a71c8 in get_next_line get_next_line.c:44
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459d424 in main tester.c:162
+    #7 0x18d1890dc  (<unknown module>)
+
+previously allocated by thread T0 here:
+    #0 0x1083ff244 in wrap_malloc+0x94 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53244)
+    #1 0x10459fad4 in malloc malloc_mock.c:65
+    #2 0x1045a7fd4 in ft_substr get_next_line_utils.c:47
+    #3 0x1045a76a0 in total_line get_next_line.c:90
+    #4 0x1045a720c in get_next_line get_next_line.c:48
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459d424 in main tester.c:162
+    #7 0x18d1890dc  (<unknown module>)
+
+SUMMARY: AddressSanitizer: double-free (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380) in wrap_free+0x98
+##==##==##&&##==##==##./test2.out
+Error in test 1: get_next_line(5: "lines_around_10.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459d234 main + 12784
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 2: get_next_line(5: "lines_around_10.txt"): expected 11 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459d280 main + 12860
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "012345678\n"
+Error in test 3: get_next_line(5: "lines_around_10.txt"): expected 13 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459d2cc main + 12936
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "90123456789\n"
+Error in test 4: get_next_line(5: "lines_around_10.txt"): expected 12 bytes, allocated 17 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459d318 main + 13012
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 5: get_next_line(5: "lines_around_10.txt"): expected 6 bytes, allocated 16 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459d318 main + 13012
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "xxxx\n"
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459d428 main + 13284
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a701990 - 20 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459d428 main + 13284
+7   dyld                                0x000000018d1890e0 start + 2360
+
+You are trying to free a pointer that was already freed
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 7th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x000000010459d428 main + 13284
+7   dyld                                0x000000018d1890e0 start + 2360
+: Memory problems!
+0   test2.out                           0x00000001045a2c74 show_signal_msg + 556
+1   test2.out                           0x00000001045a2d6c sigabort + 40
+2   libsystem_platform.dylib            0x000000018d533a24 _sigtramp + 56
+3   libsystem_pthread.dylib             0x000000018d504cc0 pthread_kill + 288
+4   libsystem_c.dylib                   0x000000018d414a40 abort + 180
+5   libclang_rt.asan_osx_dynamic.dylib  0x0000000108423788 _ZN11__sanitizer6AtexitEPFvvE + 0
+6   libclang_rt.asan_osx_dynamic.dylib  0x0000000108422e78 _ZN11__sanitizer22SetCheckUnwindCallbackEPFvvE + 0
+7   libclang_rt.asan_osx_dynamic.dylib  0x0000000108407020 _ZN6__asan16ErrorDescription5PrintEv + 0
+8   libclang_rt.asan_osx_dynamic.dylib  0x00000001084039d0 _ZN6__asan16ReportDoubleFreeEmPN11__sanitizer18BufferedStackTraceE + 428
+9   libclang_rt.asan_osx_dynamic.dylib  0x00000001083ff3ec wrap_free + 260
+10  test2.out                           0x00000001045a0130 free + 56
+11  test2.out                           0x00000001045a71f8 get_next_line + 256
+12  test2.out                           0x00000001045a6f20 null_check_gnl + 624
+13  test2.out                           0x000000010459d428 main + 13284
+14  dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test2.out
+Error in test 4: get_next_line(5: "giant_line.txt"):
+malloc protection check for 752th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x000000010459da0c main + 14792
+7   dyld                                0x000000018d1890e0 start + 2360
+: Timeout occurred. You can increase the timeout by executing francinette --timeout <number of seconds>
+##==##==##&&##==##==##./test2.out
+Error in test 1: get_next_line(5: "giant_line_nl.txt"): expected 20002 bytes, allocated 20011 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459dff4 main + 16304
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "01234567890123456789[...]1234567890123456789\n"(20001 characters)
+Error in test 5: get_next_line(5: "giant_line_nl.txt"):
+malloc protection check for 754th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x000000010459e114 main + 16592
+7   dyld                                0x000000018d1890e0 start + 2360
+: Timeout occurred. You can increase the timeout by executing francinette --timeout <number of seconds>
+##==##==##&&##==##==##./test2.out
+=================================================================
+==6276==ERROR: AddressSanitizer: attempting double-free on 0x00010a701900 in thread T0:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a71f4 in get_next_line get_next_line.c:47
+    #3 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #4 0x10459e9b4 in main tester.c:193
+    #5 0x18d1890dc  (<unknown module>)
+
+0x00010a701900 is located 0 bytes inside of 20-byte region [0x00010a701900,0x00010a701914)
+freed by thread T0 here:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a7bf0 in ft_strjoin get_next_line_utils.c:27
+    #3 0x1045a7454 in read_line get_next_line.c:72
+    #4 0x1045a71c8 in get_next_line get_next_line.c:44
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459e9b4 in main tester.c:193
+    #7 0x18d1890dc  (<unknown module>)
+
+previously allocated by thread T0 here:
+    #0 0x1083ff244 in wrap_malloc+0x94 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53244)
+    #1 0x10459fad4 in malloc malloc_mock.c:65
+    #2 0x1045a7fd4 in ft_substr get_next_line_utils.c:47
+    #3 0x1045a76a0 in total_line get_next_line.c:90
+    #4 0x1045a720c in get_next_line get_next_line.c:48
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x10459e9b4 in main tester.c:193
+    #7 0x18d1890dc  (<unknown module>)
+
+SUMMARY: AddressSanitizer: double-free (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380) in wrap_free+0x98
+Error in test 1: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459e60c main + 17864
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "aaaaaaaaaa\n"
+Error in test 2: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459e658 main + 17940
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "bbbbbbbbbb\n"
+Error in test 4: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459e7b8 main + 18292
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "aaaaaaaaaa\n"
+Error in test 5: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459e804 main + 18368
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "bbbbbbbbbb\n"
+Error in test 6: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 19 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459e850 main + 18444
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "cccccccccc\n"
+Probable reason: You should clear the static buffer when a call to read returns -1
+Error in test 10: get_next_line(5: "read_error.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x000000010459e9b8 main + 18804
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a701960 - 20 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x000000010459e9b8 main + 18804
+7   dyld                                0x000000018d1890e0 start + 2360
+
+You are trying to free a pointer that was already freed
+Error in test 10: get_next_line(5: "read_error.txt"):
+malloc protection check for 7th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x000000010459e9b8 main + 18804
+7   dyld                                0x000000018d1890e0 start + 2360
+: Memory problems!
+0   test2.out                           0x00000001045a2c74 show_signal_msg + 556
+1   test2.out                           0x00000001045a2d6c sigabort + 40
+2   libsystem_platform.dylib            0x000000018d533a24 _sigtramp + 56
+3   libsystem_pthread.dylib             0x000000018d504cc0 pthread_kill + 288
+4   libsystem_c.dylib                   0x000000018d414a40 abort + 180
+5   libclang_rt.asan_osx_dynamic.dylib  0x0000000108423788 _ZN11__sanitizer6AtexitEPFvvE + 0
+6   libclang_rt.asan_osx_dynamic.dylib  0x0000000108422e78 _ZN11__sanitizer22SetCheckUnwindCallbackEPFvvE + 0
+7   libclang_rt.asan_osx_dynamic.dylib  0x0000000108407020 _ZN6__asan16ErrorDescription5PrintEv + 0
+8   libclang_rt.asan_osx_dynamic.dylib  0x00000001084039d0 _ZN6__asan16ReportDoubleFreeEmPN11__sanitizer18BufferedStackTraceE + 428
+9   libclang_rt.asan_osx_dynamic.dylib  0x00000001083ff3ec wrap_free + 260
+10  test2.out                           0x00000001045a0130 free + 56
+11  test2.out                           0x00000001045a71f8 get_next_line + 256
+12  test2.out                           0x00000001045a6f20 null_check_gnl + 624
+13  test2.out                           0x000000010459e9b8 main + 18804
+14  dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test2.out
+=================================================================
+==6278==ERROR: AddressSanitizer: attempting double-free on 0x00010a703a00 in thread T0:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a71f4 in get_next_line get_next_line.c:47
+    #3 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #4 0x104599e9c in test_limit tester.c:90
+    #5 0x10459ef2c in main tester.c:235
+    #6 0x18d1890dc  (<unknown module>)
+
+0x00010a703a00 is located 0 bytes inside of 20-byte region [0x00010a703a00,0x00010a703a14)
+freed by thread T0 here:
+    #0 0x1083ff380 in wrap_free+0x98 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380)
+    #1 0x1045a012c in free malloc_mock.c:82
+    #2 0x1045a7bf0 in ft_strjoin get_next_line_utils.c:27
+    #3 0x1045a7454 in read_line get_next_line.c:72
+    #4 0x1045a71c8 in get_next_line get_next_line.c:44
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x104599e9c in test_limit tester.c:90
+    #7 0x10459ef2c in main tester.c:235
+    #8 0x18d1890dc  (<unknown module>)
+
+previously allocated by thread T0 here:
+    #0 0x1083ff244 in wrap_malloc+0x94 (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53244)
+    #1 0x10459fad4 in malloc malloc_mock.c:65
+    #2 0x1045a7fd4 in ft_substr get_next_line_utils.c:47
+    #3 0x1045a76a0 in total_line get_next_line.c:90
+    #4 0x1045a720c in get_next_line get_next_line.c:48
+    #5 0x1045a6f1c in null_check_gnl file_utils.c:138
+    #6 0x104599e9c in test_limit tester.c:90
+    #7 0x10459ef2c in main tester.c:235
+    #8 0x18d1890dc  (<unknown module>)
+
+SUMMARY: AddressSanitizer: double-free (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x53380) in wrap_free+0x98
+Error in test 64: get_next_line(5: "limits.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6994 test_gnl_func_limits + 128
+6   test2.out                           0x0000000104599e4c test_limit + 592
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "abcdefghij\n"
+Error in test 65: get_next_line(5: "limits.txt"): expected 10 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6994 test_gnl_func_limits + 128
+6   test2.out                           0x0000000104599e4c test_limit + 592
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "lmnopqrs\n"
+Error in test 68: get_next_line(5: "limits.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x0000000104599ea0 test_limit + 676
+5   test2.out                           0x000000010459ef30 main + 20204
+6   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a7027a0 - 20 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x0000000104599ea0 test_limit + 676
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+for file:
+1: abcdefghij\n
+2: lmnopqrs\n
+3: 
+
+Error in test 69: get_next_line(5: "limits.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6994 test_gnl_func_limits + 128
+6   test2.out                           0x0000000104599e4c test_limit + 592
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "abcdefghij\n"
+Error in test 70: get_next_line(5: "limits.txt"): expected 10 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6994 test_gnl_func_limits + 128
+6   test2.out                           0x0000000104599e4c test_limit + 592
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "lmnopqrst"
+Error in test 73: get_next_line(5: "limits.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x0000000104599ea0 test_limit + 676
+5   test2.out                           0x000000010459ef30 main + 20204
+6   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a702530 - 20 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x0000000104599ea0 test_limit + 676
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+for file:
+1: abcdefghij\n
+2: lmnopqrst
+
+Error in test 74: get_next_line(5: "limits.txt"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6994 test_gnl_func_limits + 128
+6   test2.out                           0x0000000104599e4c test_limit + 592
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "abcdefghij\n"
+Error in test 78: get_next_line(5: "limits.txt"):
+malloc protection check for 6th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7184 get_next_line + 140
+3   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+4   test2.out                           0x0000000104599ea0 test_limit + 676
+5   test2.out                           0x000000010459ef30 main + 20204
+6   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x10a702320 - 20 bytes
+You failed to free the memory allocated at:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a6f20 null_check_gnl + 624
+6   test2.out                           0x0000000104599ea0 test_limit + 676
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+
+You are trying to free a pointer that was already freed
+Error in test 78: get_next_line(5: "limits.txt"):
+malloc protection check for 7th malloc:
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a6d18 null_check_gnl + 104
+6   test2.out                           0x0000000104599ea0 test_limit + 676
+7   test2.out                           0x000000010459ef30 main + 20204
+8   dyld                                0x000000018d1890e0 start + 2360
+: Memory problems!
+0   test2.out                           0x00000001045a2c74 show_signal_msg + 556
+1   test2.out                           0x00000001045a2d6c sigabort + 40
+2   libsystem_platform.dylib            0x000000018d533a24 _sigtramp + 56
+3   libsystem_pthread.dylib             0x000000018d504cc0 pthread_kill + 288
+4   libsystem_c.dylib                   0x000000018d414a40 abort + 180
+5   libclang_rt.asan_osx_dynamic.dylib  0x0000000108423788 _ZN11__sanitizer6AtexitEPFvvE + 0
+6   libclang_rt.asan_osx_dynamic.dylib  0x0000000108422e78 _ZN11__sanitizer22SetCheckUnwindCallbackEPFvvE + 0
+7   libclang_rt.asan_osx_dynamic.dylib  0x0000000108407020 _ZN6__asan16ErrorDescription5PrintEv + 0
+8   libclang_rt.asan_osx_dynamic.dylib  0x00000001084039d0 _ZN6__asan16ReportDoubleFreeEmPN11__sanitizer18BufferedStackTraceE + 428
+9   libclang_rt.asan_osx_dynamic.dylib  0x00000001083ff3ec wrap_free + 260
+10  test2.out                           0x00000001045a0130 free + 56
+11  test2.out                           0x00000001045a71f8 get_next_line + 256
+12  test2.out                           0x00000001045a6f20 null_check_gnl + 624
+13  test2.out                           0x0000000104599ea0 test_limit + 676
+14  test2.out                           0x000000010459ef30 main + 20204
+15  dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test2.out
+Error in test 1: get_next_line(0: "stdin"): expected 12 bytes, allocated 21 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459f428 main + 21476
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 2: get_next_line(0: "stdin"): expected 11 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459f474 main + 21552
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "012345678\n"
+Error in test 3: get_next_line(0: "stdin"): expected 13 bytes, allocated 20 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459f4c0 main + 21628
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "90123456789\n"
+Error in test 4: get_next_line(0: "stdin"): expected 12 bytes, allocated 17 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7bd4 ft_strjoin + 144
+3   test2.out                           0x00000001045a7458 read_line + 340
+4   test2.out                           0x00000001045a71cc get_next_line + 212
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459f50c main + 21704
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 5: get_next_line(0: "stdin"): expected 6 bytes, allocated 16 bytes
+0   test2.out                           0x000000010459ff08 _add_malloc + 752
+1   test2.out                           0x000000010459fc08 malloc + 368
+2   test2.out                           0x00000001045a7fd8 ft_substr + 96
+3   test2.out                           0x00000001045a76a4 total_line + 500
+4   test2.out                           0x00000001045a7210 get_next_line + 280
+5   test2.out                           0x00000001045a646c test_gnl_func + 108
+6   test2.out                           0x000000010459f50c main + 21704
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "xxxx\n"
+##==##==##&&##==##==##./test2.out
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 6 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c607b0 main + 8732
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 2: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 5 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c607b0 main + 8732
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 3: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 4 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c607fc main + 8808
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 4: get_next_line(5: "multiple_nl.txt"): expected 2 bytes, allocated 3 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60848 main + 8884
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 5th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c609a4 main + 9232
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106e00410 - 5 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c609a4 main + 9232
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 7th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c609a4 main + 9232
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106e00310 - 4 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c609a4 main + 9232
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 9th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c609a4 main + 9232
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106e001d0 - 3 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c609a4 main + 9232
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "multiple_nl.txt"):
+malloc protection check for 11th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c609a4 main + 9232
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106e00050 - 2 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c609a4 main + 9232
+7   dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 223 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60e8c main + 10488
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 2: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 222 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60e8c main + 10488
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x2\n"
+Error in test 3: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 221 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60ed8 main + 10564
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x3\n"
+Error in test 4: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 178 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60f24 main + 10640
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 5: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 135 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60f70 main + 10716
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x5\n"
+Error in test 6: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 134 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c60fbc main + 10792
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 7: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 91 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c61008 main + 10868
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 8: get_next_line(5: "variable_nls.txt"): expected 44 bytes, allocated 90 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c61054 main + 10944
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789012345678901234567890123456789x8\n"
+Error in test 9: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 89 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c610a0 main + 11020
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 10: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 46 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c610ec main + 11096
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 11: get_next_line(5: "variable_nls.txt"): expected 2 bytes, allocated 45 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c61138 main + 11172
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "\n"
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 5th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107706f80 - 222 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 7th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107705e00 - 221 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 9th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107900c40 - 178 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 11th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107e02dc0 - 135 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 13th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107e02a80 - 134 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 15th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107201a20 - 91 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 17th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107201820 - 90 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 19th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107201520 - 89 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 21th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00690 - 46 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 23th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00590 - 45 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 15: get_next_line(5: "variable_nls.txt"):
+malloc protection check for 25th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61294 main + 11520
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00410 - 44 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61294 main + 11520
+7   dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(5: "lines_around_10.txt"): expected 12 bytes, allocated 50 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c6177c main + 12776
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 2: get_next_line(5: "lines_around_10.txt"): expected 11 bytes, allocated 49 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c6177c main + 12776
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "012345678\n"
+Error in test 3: get_next_line(5: "lines_around_10.txt"): expected 13 bytes, allocated 38 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c617c8 main + 12852
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "90123456789\n"
+Error in test 4: get_next_line(5: "lines_around_10.txt"): expected 12 bytes, allocated 28 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c61814 main + 12928
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 5: get_next_line(5: "lines_around_10.txt"): expected 6 bytes, allocated 16 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c61860 main + 13004
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "xxxx\n"
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 5th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61970 main + 13276
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106b00bc0 - 49 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61970 main + 13276
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 7th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61970 main + 13276
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00950 - 38 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61970 main + 13276
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 9th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61970 main + 13276
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106d01cf0 - 28 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61970 main + 13276
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 8: get_next_line(5: "lines_around_10.txt"):
+malloc protection check for 11th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c61970 main + 13276
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106e004b0 - 16 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c61970 main + 13276
+7   dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test3.out
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(5: "giant_line_nl.txt"): expected 20002 bytes, allocated 20017 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c6253c main + 16296
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "01234567890123456789[...]1234567890123456789\n"(20001 characters)
+Error in test 2: get_next_line(5: "giant_line_nl.txt"): expected 16 bytes, allocated 20016 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c6253c main + 16296
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "another line!!!"
+Error in test 5: get_next_line(5: "giant_line_nl.txt"):
+malloc protection check for 5th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c6265c main + 16584
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x107b30200 - 20016 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c6265c main + 16584
+7   dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 45 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62b54 main + 17856
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "aaaaaaaaaa\n"
+Error in test 2: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 44 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62b54 main + 17856
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "bbbbbbbbbb\n"
+Error in test 4: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 45 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62d30 main + 18332
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "aaaaaaaaaa\n"
+Error in test 5: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 44 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62d30 main + 18332
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "bbbbbbbbbb\n"
+Error in test 6: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 33 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62d7c main + 18408
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "cccccccccc\n"
+Error in test 7: get_next_line(5: "read_error.txt"): expected 12 bytes, allocated 22 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c62dc8 main + 18484
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "dddddddddd\n"
+Probable reason: You should clear the static buffer when a call to read returns -1
+Error in test 10: get_next_line(5: "read_error.txt"):
+malloc protection check for 5th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c62f30 main + 18844
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00710 - 44 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c62f30 main + 18844
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 10: get_next_line(5: "read_error.txt"):
+malloc protection check for 7th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c62f30 main + 18844
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106f00590 - 33 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c62f30 main + 18844
+7   dyld                                0x000000018d1890e0 start + 2360
+
+Error in test 10: get_next_line(5: "read_error.txt"):
+malloc protection check for 9th malloc:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6b1bc get_next_line + 144
+3   test3.out                           0x0000000100c6ad4c null_check_gnl + 104
+4   test3.out                           0x0000000100c62f30 main + 18844
+5   dyld                                0x000000018d1890e0 start + 2360
+: 
+Memory leak: 0x106d01cf0 - 22 bytes
+You failed to free the memory allocated at:
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6af54 null_check_gnl + 624
+6   test3.out                           0x0000000100c62f30 main + 18844
+7   dyld                                0x000000018d1890e0 start + 2360
+
+##==##==##&&##==##==##./test3.out
+Error in test 1: get_next_line(0: "stdin"): expected 12 bytes, allocated 50 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6bc14 ft_strjoin + 144
+3   test3.out                           0x0000000100c6b498 read_line + 344
+4   test3.out                           0x0000000100c6b208 get_next_line + 220
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c63450 main + 20156
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 2: get_next_line(0: "stdin"): expected 11 bytes, allocated 49 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c63450 main + 20156
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "012345678\n"
+Error in test 3: get_next_line(0: "stdin"): expected 13 bytes, allocated 38 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c6349c main + 20232
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "90123456789\n"
+Error in test 4: get_next_line(0: "stdin"): expected 12 bytes, allocated 28 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c634e8 main + 20308
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "0123456789\n"
+Error in test 5: get_next_line(0: "stdin"): expected 6 bytes, allocated 16 bytes
+0   test3.out                           0x0000000100c63f30 _add_malloc + 752
+1   test3.out                           0x0000000100c63c30 malloc + 368
+2   test3.out                           0x0000000100c6c018 ft_substr + 96
+3   test3.out                           0x0000000100c6b6e4 total_line + 500
+4   test3.out                           0x0000000100c6b24c get_next_line + 288
+5   test3.out                           0x0000000100c6a4a0 test_gnl_func + 108
+6   test3.out                           0x0000000100c63534 main + 20384
+7   dyld                                0x000000018d1890e0 start + 2360
+
+should reserve space for the string: "xxxx\n"
+##==##==##&&##==##==##./test3.out

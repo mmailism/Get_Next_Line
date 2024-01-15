@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 17:16:43 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:49:17 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
-	// static int	error = 0;
-	// error++;
-
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		if (list)
@@ -46,32 +43,25 @@ char	*get_next_line(int fd)
 	set_zero(buffer, BUFFER_SIZE + 1);
 	line = read_line(fd, buffer, list);
 	free(buffer);
-	if (!line /*|| error == 4*/)
-	{
-		if (list)
-			free(list);
-		list = NULL;
-		return (NULL);
-	}
-	list = total_line(line);
+	if (!line)
+		return (free(list), NULL);
+	list = get_list(line);
 	return (line);
 }
 
 char	*read_line(int fd, char *buffer, char *list)
 {
-	//int		check;
 	int		rd;
 	char	*tmp;
 
+	// if (!buffer)
+		// return (NULL);
 	rd = 1;
-	while (!ft_strchr(buffer, '\n'))
+	while (!found_newline(list))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
-		{
-			free(buffer);
-			return (0);
-		}
+			return (free(buffer), NULL);
 		else if (rd == 0)
 			break ;
 		buffer[rd] = 0;
@@ -86,7 +76,7 @@ char	*read_line(int fd, char *buffer, char *list)
 	return (list);
 }
 
-void	*total_line(char *list)
+void	*get_list(char *list)
 {
 	int		i;
 	char	*tmp;
@@ -123,21 +113,47 @@ size_t	ft_strlen(const char *str)
 }
 
 /*Buffer Overflow becuase didn't check *s*/
-char	*ft_strchr(const char *s, int c)
+// char	*ft_strchr(char *s, int c)
+// {
+// 	if (!s)
+// 		return (NULL);
+// 	if (c == '\0')
+// 	{
+// 		while (*s != '\0')
+// 			s++;
+// 		return ((char *)s);
+// 	}
+// 	while (*s != (char)c)
+// 	{
+// 		if (*s == '\0')
+// 			return (NULL);
+// 		s++;
+// 	}
+// 	return ((char *)s);
+// }
+int	found_newline(char *list)
 {
-	if (c == '\0')
+	int		i;
+	// char	*node_n;
+
+	// node_n = (char *)malloc(sizeof(list));
+	if (!list)
+		return (0);
+	i = 0;
+	if (list[0] == '\0')
+		return (0);
+	else
 	{
-		while (*s != '\0')
-			s++;
-		return ((char *)s);
+		while (list[i] != '\0')
+		{
+			if (list[i] == '\n')
+				return (1);
+			i++;
+		}
 	}
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
+	// list[i] = '\0';
+	// node_n = list;
+	return (0);
 }
 
 // #include <fcntl.h>

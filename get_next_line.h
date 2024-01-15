@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 17:17:11 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:17:02 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *buffer, char *list);
-void	*total_line(char *list);
+void	*get_list(char *list);
 size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int c);
+// char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
+int		found_newline(char *list);
 
 #endif
