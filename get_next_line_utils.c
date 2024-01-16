@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/15 21:53:09 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/16 16:49:32 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*count_list(char *list, char *buffer)
 	size_t	cnt_buffer;
 	char	*tmp;
 	i = 0;
+	if (!list)
+		return (0);
 	if (list)
 	{
 		if (buffer[0] == '\0')

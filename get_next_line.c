@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/15 21:58:59 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/16 17:14:53 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*read_line(int fd, char *buffer, char *list)
 	// if (!buffer)
 		// return (NULL);
 	rd = 1;
-	while (1)
+	while (!found_newline(list))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
@@ -133,52 +133,51 @@ size_t	ft_strlen(const char *str)
 // }
 int	found_newline(char *list)
 {
-	int		i;
-	// char	*node_n;
-
-	// node_n = (char *)malloc(sizeof(list));
+	size_t	i;
+	size_t	cnt_list;
+	char	*tmp;
+	
 	if (!list)
 		return (0);
 	i = 0;
-	if (list[0] == '\0')
+	cnt_list = ft_strlen(list);
+	tmp = (char *)malloc(cnt_list);
+	if (!tmp)
 		return (0);
-	else
+	if (tmp[0] == '\0')
+		return (0);
+	while (tmp[i] != '\0')
 	{
-		while (list[i] != '\0')
-		{
-			if (list[i] == '\n')
-				return (1);
-			i++;
-		}
+		if (tmp[i] == '\n')
+			return (1);
+		i++;
 	}
-	// list[i] = '\0';
-	// node_n = list;
 	return (0);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
+// #include <fcntl.h>
+// #include <stdio.h>
 
-int	main(void)
-{
-	int	fd;
-	char	*line;
+// int	main(void)
+// {
+// 	int	fd;
+// 	char	*line;
 
-	fd = open("read_error.txt", O_RDONLY);
+// 	fd = open("read_error.txt", O_RDONLY);
 
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	close(fd);
-	fd = open("43_with_nl.txt", O_RDONLY);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	fd = open("43_with_nl.txt", O_RDONLY);
 
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	close(fd);
-	return 0;
-}
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return 0;
+// }
