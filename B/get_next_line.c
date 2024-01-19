@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 	if (!tmp)
 		return (NULL);
 	read_list(tmp, fd);
-	extract(list);
+	extract(list); // ! at this
 }
 
 t_list	*create_list(t_list *list)
@@ -56,9 +56,11 @@ t_list	*read_list(int fd, t_list *list)
 		list->content = (ft_strjoin(list, buff));
 		if (!list->content)
 			return (free(buff), NULL);
-		//this checkmalloc
+		if (!check_list(list->content, buff))
+			break ;
 	}
-	
+	free(buff);
+	return (list);
 }
 
 t_list	*node_lst(t_list **list)
@@ -113,4 +115,34 @@ t_list	*clearnode(t_list *list)
 		list = NULL;
 	}
 	return (list);
+}
+
+char	*check_list(char *list, char *buff)
+{
+	char	*tmp;
+	size_t	i;
+	size_t	cnt_list;
+	size_t	cnt_buff;
+
+	i = 0;
+	if (list)
+		return (NULL);
+	if (list)
+	{
+		if (buff[0] == '\0')
+			return (NULL);
+		while (buff[i] != '\0')
+		{
+			if (buff[i] == '\n')
+				return (NULL);
+			i++;
+		}
+		return (buff);
+	}
+	cnt_list = ft_strlen(list);
+	cnt_buff = ft_strlen(buff);
+	tmp = (char *)malloc(cnt_list + cnt_buff + 1);
+	if (!tmp)
+		return (free(tmp), NULL);
+	return (tmp);
 }
