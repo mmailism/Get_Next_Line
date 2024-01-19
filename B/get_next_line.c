@@ -121,7 +121,7 @@ char	*check_list(char *list, char *buff)
 {
 	char	*tmp;
 	size_t	i;
-	size_t	cnt_list;
+	size_t	cnt_list_buff;
 	size_t	cnt_buff;
 
 	i = 0;
@@ -139,10 +139,67 @@ char	*check_list(char *list, char *buff)
 		}
 		return (buff);
 	}
-	cnt_list = ft_strlen(list);
-	cnt_buff = ft_strlen(buff);
-	tmp = (char *)malloc(cnt_list + cnt_buff + 1);
+	cnt_list_buff = ft_strlen(list) + ft_strlen(buff);
+	// cnt_buff = ft_strlen(buff);
+	tmp = (char *)malloc(cnt_list_buff + 1);
 	if (!tmp)
 		return (free(tmp), NULL);
 	return (tmp);
 }
+
+// char	*ft_strcpy_nl(t_list *lst)
+// {
+// 	char	*new_line;
+// 	size_t	i;
+// 	size_t	memory;
+
+// 	if (!lst)
+// 		return (NULL);
+// 	i = 0;
+// 	memory = ft_strlen_nl(lst->content, 2);
+// 	if (memory == 0)
+// 		return (NULL);
+// 	new_line = (char *)malloc(memory + 1);
+// 	if (!new_line)
+// 		return (NULL);
+// 	while (lst->content[i] != '\0' && lst->content[i] != '\n')
+// 	{
+// 		new_line[i] = lst->content[i];
+// 		i++;
+// 	}
+// 	if (lst->content[i] == '\n')
+// 		new_line[i++] = '\n';
+// 	new_line[i] = '\0';
+// 	lst = ft_update_backup(lst, new_line);
+// 	if (!lst)
+// 		return (NULL);
+// 	return (new_line);
+// }
+
+// t_list	*ft_update_backup(t_list *c_lst, char *new_line)
+// {
+// 	char	*temp;
+// 	char	*current;
+// 	size_t	i;
+// 	size_t	count_newmem;
+
+// 	current = c_lst->content;
+// 	current = current + ft_strlen_nl(current, 2);
+// 	count_newmem = ft_strlen_nl(current, 1);
+// 	temp = (char *)malloc(count_newmem + 1);
+// 	if (!temp)
+// 	{
+// 		free(new_line);
+// 		return (NULL);
+// 	}
+// 	i = 0;
+// 	while (current[i] != '\0')
+// 	{
+// 		temp[i] = current[i];
+// 		i++;
+// 	}
+// 	temp[i] = '\0';
+// 	free(c_lst->content);
+// 	c_lst->content = temp;
+// 	return (c_lst);
+// }
