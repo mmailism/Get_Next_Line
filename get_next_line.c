@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/16 17:14:53 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/19 13:33:35 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ char	*read_line(int fd, char *buffer, char *list)
 	int		rd;
 	char	*tmp;
 
-	// if (!buffer)
-		// return (NULL);
 	rd = 1;
-	while (!found_newline(list))
+	while (!(ft_strchr(list, '\n')))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
@@ -113,46 +111,23 @@ size_t	ft_strlen(const char *str)
 }
 
 /*Buffer Overflow becuase didn't check *s*/
-// char	*ft_strchr(char *s, int c)
-// {
-// 	if (!s)
-// 		return (NULL);
-// 	if (c == '\0')
-// 	{
-// 		while (*s != '\0')
-// 			s++;
-// 		return ((char *)s);
-// 	}
-// 	while (*s != (char)c)
-// 	{
-// 		if (*s == '\0')
-// 			return (NULL);
-// 		s++;
-// 	}
-// 	return ((char *)s);
-// }
-int	found_newline(char *list)
+char	*ft_strchr(char *s, int c)
 {
-	size_t	i;
-	size_t	cnt_list;
-	char	*tmp;
-	
-	if (!list)
-		return (0);
-	i = 0;
-	cnt_list = ft_strlen(list);
-	tmp = (char *)malloc(cnt_list);
-	if (!tmp)
-		return (0);
-	if (tmp[0] == '\0')
-		return (0);
-	while (tmp[i] != '\0')
+	if (!s)
+		return (NULL);
+	if (c == '\0')
 	{
-		if (tmp[i] == '\n')
-			return (1);
-		i++;
+		while (*s != '\0')
+			s++;
+		return ((char *)s);
 	}
-	return (0);
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
 }
 
 // #include <fcntl.h>
