@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/19 13:39:00 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/24 18:07:02 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ typedef struct s_list
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *buffer, char *list);
-void	*get_list(char *list);
-size_t	ft_strlen(const char *str);
+char	*get_list(char *list);
+size_t	ft_strlen(char *str, size_t mem);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 // int		found_newline(char *list);
 // char	*count_list(char *list, char *buffer);
+void	set_zero(char *ptr, int size);
 
 #endif

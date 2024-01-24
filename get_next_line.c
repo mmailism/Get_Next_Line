@@ -6,13 +6,13 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/19 13:33:35 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/24 18:08:10 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	set_zero(char *ptr, int size)
+void	set_zero(char *ptr, int size)
 {
 	int	i;
 
@@ -74,60 +74,55 @@ char	*read_line(int fd, char *buffer, char *list)
 	return (list);
 }
 
-void	*get_list(char *list)
+char	*get_list(char *list)
 {
 	int		i;
 	char	*tmp;
+	char	*mem;
 
 	i = 0;
-	while (list[i] != '\0' && list[i] != '\n')
-		i++;
-	if (list[i] == '\0')
+	mem = ft_strlen(list, 2);
+	if (mem == 0)
 		return (NULL);
-	tmp = ft_substr(list, i + 1, ft_strlen(list) - 1);
+	tmp = (char *)malloc(mem + 1);
 	if (!tmp)
 		return (NULL);
-	if (tmp[0] == '\0')
+	while (list[i] != '\0' && list[i] != '\n')
 	{
-		free(tmp);
-		tmp = NULL;
-		return (NULL);
+		tmp[i] = list[i];
+		i++;
 	}
-	list[i + 1] = '\0';
+	if (list[i] == '\n')
+		tmp[i++] = '\n';
+	tmp[i] = '\0';
+	tmp = ft_substr(list, i + 1, ft_strlen(list, 1) - 1);
+	if (!tmp)
+		return (free(tmp), NULL);
 	return (tmp);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str, size_t mem)
 {
 	size_t	i;
 
 	i = 0;
-	while (*str != '\0')
+	if (!str)
+		return (0);
+	if (mem == 1)
 	{
-		str++;
-		i++;
+		while (str[i] != '\0')
+			i++;
+	}
+	else if (mem == 2)
+	{
+		if (str[0] == '\0')
+			return (0);
+		while (str[i] != '\0' && str[i] != '\n')
+			i++;
+		if (str[i] == '\n')
+			i++;
 	}
 	return (i);
-}
-
-/*Buffer Overflow becuase didn't check *s*/
-char	*ft_strchr(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	if (c == '\0')
-	{
-		while (*s != '\0')
-			s++;
-		return ((char *)s);
-	}
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
 }
 
 // #include <fcntl.h>

@@ -264,3 +264,29 @@ t_list	*ft_newnode(int fd, t_list **lst)
 	current->next = n_node;
 	return (current->next);
 }
+#include <fcntl.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	int	fd;
+	char	*line;
+
+	fd = open("read_error.txt", O_RDONLY);
+
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	fd = open("43_with_nl.txt", O_RDONLY);
+
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	close(fd);
+	return 0;
+}

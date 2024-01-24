@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/19 13:37:40 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/24 18:07:57 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	temp = (char *)malloc((ft_strlen(s1, 1) + ft_strlen(s2, 1) + 1));
 	if (!temp)
 		return (free(s1), NULL);
 	while (s1[j])
@@ -64,7 +64,7 @@ char	*ft_strdup(const char *s)
 	size_t	i;
 
 	i = 0;
-	s_len = ft_strlen(s);
+	s_len = ft_strlen(s, 1);
 	dup = (char *)malloc((s_len * sizeof(char)) + 1);
 	if (dup == NULL)
 		return (NULL);
@@ -75,4 +75,23 @@ char	*ft_strdup(const char *s)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+	{
+		while (*s != '\0')
+			s++;
+		return ((char *)s);
+	}
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
 }
