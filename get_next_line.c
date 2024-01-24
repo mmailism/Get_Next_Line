@@ -6,7 +6,7 @@
 /*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/24 18:08:10 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/24 19:25:46 by Mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,50 @@ char	*get_list(char *list)
 {
 	int		i;
 	char	*tmp;
-	char	*mem;
-
 	i = 0;
-	mem = ft_strlen(list, 2);
-	if (mem == 0)
-		return (NULL);
-	tmp = (char *)malloc(mem + 1);
-	if (!tmp)
-		return (NULL);
 	while (list[i] != '\0' && list[i] != '\n')
-	{
-		tmp[i] = list[i];
 		i++;
-	}
-	if (list[i] == '\n')
-		tmp[i++] = '\n';
-	tmp[i] = '\0';
+	if (list[i] == '\0')
+		return (NULL);
 	tmp = ft_substr(list, i + 1, ft_strlen(list, 1) - 1);
 	if (!tmp)
-		return (free(tmp), NULL);
+		return (NULL);
+	if (tmp[0] == '\0')
+	{
+		free(tmp);
+		tmp = NULL;
+		return (NULL);
+	}
+	list[i + 1] = '\0';
 	return (tmp);
 }
+
+// char	*get_list(char *list)
+// {
+// 	int		i;
+// 	char	*tmp;
+// 	char	mem;
+
+// 	i = 0;
+// 	mem = ft_strlen(list, 1);
+// 	if (mem == 0)
+// 		return (NULL);
+// 	tmp = (char *)malloc(mem + 1);
+// 	if (!tmp)
+// 		return (NULL);
+// 	while (list[i] != '\0' && list[i] != '\n')
+// 	{
+// 		tmp[i] = list[i];
+// 		i++;
+// 	}
+// 	if (list[i] == '\n')
+// 		tmp[i++] = '\n';
+// 	tmp[i] = '\0';
+// 	tmp = ft_substr(list, i + 1, ft_strlen(list, 1) - 1);
+// 	if (!tmp)
+// 		return (free(tmp), NULL);
+// 	return (tmp);
+// }
 
 size_t	ft_strlen(char *str, size_t mem)
 {
