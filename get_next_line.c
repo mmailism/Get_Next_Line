@@ -6,13 +6,13 @@
 /*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 17:16:43 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:30:07 by maramick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	set_zero(char *ptr, int size)
+void	set_zero(char *ptr, int size)
 {
 	int	i;
 
@@ -24,14 +24,36 @@ static void	set_zero(char *ptr, int size)
 	}
 }
 
+size_t	ft_strlen(char *str, size_t mem)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	if (mem == 1)
+	{
+		while (str[i] != '\0')
+			i++;
+	}
+	else if (mem == 2)
+	{
+		if (str[0] == '\0')
+			return (0);
+		while (str[i] != '\0' && str[i] != '\n')
+			i++;
+		if (str[i] == '\n')
+			i++;
+	}
+	return (i);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*list = NULL;
 	char		*buffer;
 	char		*line;
-
-	// static int	error = 0;
-	// error++;
+	char		*new_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
@@ -42,51 +64,65 @@ char	*get_next_line(int fd)
 	}
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (NULL);
-	set_zero(buffer, BUFFER_SIZE + 1);
-	line = read_line(fd, buffer, list);
-	free(buffer);
-	if (!line /*|| error == 4*/)
 	{
 		if (list)
 			free(list);
 		list = NULL;
 		return (NULL);
 	}
-	list = total_line(line);
-	return (line);
+	set_zero(buffer, BUFFER_SIZE + 1);
+	line = read_line(fd, buffer, &list);
+	free(buffer);
+	if (!line)
+	{
+		if (list)
+			free(list);
+		list = NULL;
+		return ( NULL);
+	}
+	list = get_list(line);
+	new_line = get_newline(line);
+	if (!new_line)
+	{
+		if (list)
+			free(list);
+		list = NULL;
+	}
+	free(line);
+	return (new_line);
 }
 
-char	*read_line(int fd, char *buffer, char *list)
+char	*read_line(int fd, char *buffer, char **addr_list)
 {
-	//int		check;
 	int		rd;
 	char	*tmp;
+	char	*list;
 
+	list = *addr_list;
 	rd = 1;
-	while (!ft_strchr(buffer, '\n'))
+	while (!(ft_strchr(list, '\n')))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
-		{
-			free(buffer);
-			return (0);
-		}
+			return (NULL);
 		else if (rd == 0)
 			break ;
 		buffer[rd] = 0;
 		if (!list)
 			list = ft_strdup("");
 		tmp = list;
-		list = (ft_strjoin(tmp, buffer));
+		list = ft_strjoin(tmp, buffer);
 		if (!list)
+		{
+			*addr_list = NULL;
 			return (NULL);
+		}
 		free(tmp);
 	}
 	return (list);
 }
 
-void	*total_line(char *list)
+char	*get_list(char *list)
 {
 	int		i;
 	char	*tmp;
@@ -96,7 +132,7 @@ void	*total_line(char *list)
 		i++;
 	if (list[i] == '\0')
 		return (NULL);
-	tmp = ft_substr(list, i + 1, ft_strlen(list) - 1);
+	tmp = ft_substr(list, i + 1, ft_strlen(list, 1) - 1);
 	if (!tmp)
 		return (NULL);
 	if (tmp[0] == '\0')
@@ -109,36 +145,32 @@ void	*total_line(char *list)
 	return (tmp);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+// char	*get_list(char *list)
+// {
+// 	int		i;
+// 	char	*tmp;
+// 	char	mem;
 
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
-
-/*Buffer Overflow becuase didn't check *s*/
-char	*ft_strchr(const char *s, int c)
-{
-	if (c == '\0')
-	{
-		while (*s != '\0')
-			s++;
-		return ((char *)s);
-	}
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
-}
+// 	i = 0;
+// 	mem = ft_strlen(list, 1);
+// 	if (mem == 0)
+// 		return (NULL);
+// 	tmp = (char *)malloc(mem + 1);
+// 	if (!tmp)
+// 		return (NULL);
+// 	while (list[i] != '\0' && list[i] != '\n')
+// 	{
+// 		tmp[i] = list[i];
+// 		i++;
+// 	}
+// 	if (list[i] == '\n')
+// 		tmp[i++] = '\n';
+// 	tmp[i] = '\0';
+// 	tmp = ft_substr(list, i + 1, ft_strlen(list, 1) - 1);
+// 	if (!tmp)
+// 		return (free(tmp), NULL);
+// 	return (tmp);
+// }
 
 // #include <fcntl.h>
 // #include <stdio.h>

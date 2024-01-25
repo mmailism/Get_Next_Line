@@ -6,11 +6,33 @@
 /*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/09 17:17:01 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:24:29 by maramick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_newline(char *data)
+{
+	int		i;
+	int		byte;
+	char	*new_line;
+
+	i = 0;
+	byte = ft_strlen(data, 1);
+	if (byte == 0)
+		return (NULL);
+	new_line = (char *)malloc(byte + 1);
+	if (!new_line)
+		return (NULL);
+	while (data[i])
+	{
+		new_line[i] = data[i];
+		i++;
+	}
+	new_line[i] = '\0';
+	return (new_line);
+}
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -22,12 +44,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	temp = (char *)malloc((ft_strlen(s1, 1) + ft_strlen(s2, 1) + 1));
 	if (!temp)
-	{
-		free(s1);
-		return (NULL);
-	}
+		return (free(s1), NULL);
 	while (s1[j])
 		temp[i++] = s1[j++];
 	j = 0;
@@ -60,14 +79,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (tmp);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*dup;
 	size_t	s_len;
 	size_t	i;
 
 	i = 0;
-	s_len = ft_strlen(s);
+	s_len = ft_strlen(s, 1);
 	dup = (char *)malloc((s_len * sizeof(char)) + 1);
 	if (dup == NULL)
 		return (NULL);
@@ -80,24 +99,21 @@ char	*ft_strdup(const char *s)
 	return (dup);
 }
 
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*alt;
-// 	char	n;
-// 	int		i;
-
-// 	if (!s1)
-// 		return (NULL);
-// 	n = ft_strlen(s1) + 1;
-// 	alt = (char *)malloc(sizeof(char) * n);
-// 	if (!alt)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		alt[i] = s1[i];
-// 		i++;
-// 	}
-// 	alt[i] = 0;
-// 	return (alt);
-// }
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+	{
+		while (*s != '\0')
+			s++;
+		return ((char *)s);
+	}
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
+}
