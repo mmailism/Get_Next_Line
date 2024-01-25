@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/24 19:18:48 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/25 14:24:29 by maramick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_newline(char *data)
+{
+	int		i;
+	int		byte;
+	char	*new_line;
+
+	i = 0;
+	byte = ft_strlen(data, 1);
+	if (byte == 0)
+		return (NULL);
+	new_line = (char *)malloc(byte + 1);
+	if (!new_line)
+		return (NULL);
+	while (data[i])
+	{
+		new_line[i] = data[i];
+		i++;
+	}
+	new_line[i] = '\0';
+	return (new_line);
+}
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -32,7 +54,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		temp[i++] = s2[j++];
 	temp[i] = '\0';
 	return (temp);
-}		 
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

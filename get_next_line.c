@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/24 19:25:46 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/25 14:30:07 by maramick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,36 @@ void	set_zero(char *ptr, int size)
 	}
 }
 
+size_t	ft_strlen(char *str, size_t mem)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	if (mem == 1)
+	{
+		while (str[i] != '\0')
+			i++;
+	}
+	else if (mem == 2)
+	{
+		if (str[0] == '\0')
+			return (0);
+		while (str[i] != '\0' && str[i] != '\n')
+			i++;
+		if (str[i] == '\n')
+			i++;
+	}
+	return (i);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*list = NULL;
 	char		*buffer;
 	char		*line;
+	char		*new_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
@@ -39,36 +64,59 @@ char	*get_next_line(int fd)
 	}
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
+	{
+		if (list)
+			free(list);
+		list = NULL;
 		return (NULL);
+	}
 	set_zero(buffer, BUFFER_SIZE + 1);
-	line = read_line(fd, buffer, list);
+	line = read_line(fd, buffer, &list);
 	free(buffer);
 	if (!line)
-		return (free(list), NULL);
+	{
+		if (list)
+			free(list);
+		list = NULL;
+		return ( NULL);
+	}
 	list = get_list(line);
-	return (line);
+	new_line = get_newline(line);
+	if (!new_line)
+	{
+		if (list)
+			free(list);
+		list = NULL;
+	}
+	free(line);
+	return (new_line);
 }
 
-char	*read_line(int fd, char *buffer, char *list)
+char	*read_line(int fd, char *buffer, char **addr_list)
 {
 	int		rd;
 	char	*tmp;
+	char	*list;
 
+	list = *addr_list;
 	rd = 1;
 	while (!(ft_strchr(list, '\n')))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd == -1)
-			return (free(buffer), NULL);
+			return (NULL);
 		else if (rd == 0)
 			break ;
 		buffer[rd] = 0;
 		if (!list)
 			list = ft_strdup("");
 		tmp = list;
-		list = (ft_strjoin(tmp, buffer));
+		list = ft_strjoin(tmp, buffer);
 		if (!list)
+		{
+			*addr_list = NULL;
 			return (NULL);
+		}
 		free(tmp);
 	}
 	return (list);
@@ -78,6 +126,7 @@ char	*get_list(char *list)
 {
 	int		i;
 	char	*tmp;
+
 	i = 0;
 	while (list[i] != '\0' && list[i] != '\n')
 		i++;
@@ -122,30 +171,6 @@ char	*get_list(char *list)
 // 		return (free(tmp), NULL);
 // 	return (tmp);
 // }
-
-size_t	ft_strlen(char *str, size_t mem)
-{
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	if (mem == 1)
-	{
-		while (str[i] != '\0')
-			i++;
-	}
-	else if (mem == 2)
-	{
-		if (str[0] == '\0')
-			return (0);
-		while (str[i] != '\0' && str[i] != '\n')
-			i++;
-		if (str[i] == '\n')
-			i++;
-	}
-	return (i);
-}
 
 // #include <fcntl.h>
 // #include <stdio.h>
