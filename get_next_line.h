@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Mai <Mai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/25 16:46:33 by Mai              ###   ########.fr       */
+/*   Updated: 2024/01/31 14:15:57 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *buffer, char **addr_list, int rd);
 char	*get_list(char *list);
-char	*get_newline(char *data);
+char	*get_newline(char *str);
 size_t	ft_strlen(char *str, size_t mem);
 char	*ft_strchr(char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char *tmp, char *buff);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(char *s);
 char	*set_zero(char *ptr, size_t mem);

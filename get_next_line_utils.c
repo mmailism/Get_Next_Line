@@ -3,38 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maramick <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:13:01 by kpueankl          #+#    #+#             */
-/*   Updated: 2024/01/25 14:24:29 by maramick         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:15:43 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_newline(char *data)
+/* function ft_strlen mem 1 count string || mem 2 count string and "\n" */
+
+size_t	ft_strlen(char *str, size_t mem)
 {
-	int		i;
-	int		byte;
-	char	*new_line;
+	size_t	i;
 
 	i = 0;
-	byte = ft_strlen(data, 1);
-	if (byte == 0)
-		return (NULL);
-	new_line = (char *)malloc(byte + 1);
-	if (!new_line)
-		return (NULL);
-	while (data[i])
+	if (!str)
+		return (0);
+	if (mem == 1)
 	{
-		new_line[i] = data[i];
-		i++;
+		while (str[i] != '\0')
+			i++;
 	}
-	new_line[i] = '\0';
-	return (new_line);
+	else if (mem == 2)
+	{
+		if (str[0] == '\0')
+			return (0);
+		while (str[i] != '\0' && str[i] != '\n')
+			i++;
+		if (str[i] == '\n')
+			i++;
+	}
+	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+	{
+		while (*s != '\0')
+			s++;
+		return ((char *)s);
+	}
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
+}
+
+char	*ft_strjoin(char *tmp, char *buff)
 {
 	int		i;
 	int		j;
@@ -42,16 +65,16 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!tmp || !buff)
 		return (NULL);
-	temp = (char *)malloc((ft_strlen(s1, 1) + ft_strlen(s2, 1) + 1));
+	temp = (char *)malloc((ft_strlen(tmp, 1) + ft_strlen(buff, 1) + 1));
 	if (!temp)
-		return (free(s1), NULL);
-	while (s1[j])
-		temp[i++] = s1[j++];
+		return (free(tmp), NULL);
+	while (tmp[j])
+		temp[i++] = tmp[j++];
 	j = 0;
-	while (s2[j])
-		temp[i++] = s2[j++];
+	while (buff[j])
+		temp[i++] = buff[j++];
 	temp[i] = '\0';
 	return (temp);
 }
@@ -97,23 +120,4 @@ char	*ft_strdup(char *s)
 	}
 	dup[i] = '\0';
 	return (dup);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	if (c == '\0')
-	{
-		while (*s != '\0')
-			s++;
-		return ((char *)s);
-	}
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
 }
